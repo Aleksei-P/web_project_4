@@ -1,0 +1,29 @@
+.profile__info {
+  max-width: 428px;
+  margin: 0px 154px 0 30px;
+  display: flex;
+  padding: 0;
+  flex-wrap: wrap;
+  /* justify-content: space-between; */
+  align-items: baseline;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+@media screen and (max-width: 920px) {
+	.profile__info {
+    margin-right: calc(100px - 5%);
+  }
+}
+
+@media screen and (max-width: 520px) {
+	.profile__info {
+    margin-right: 0px;
+    margin-left: 0px;
+    margin-bottom: 36px;
+    margin-top: 10.25px;
+    max-width: 282px;
+    justify-content: center;
+	}
+}

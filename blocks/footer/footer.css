@@ -1,0 +1,28 @@
+@import url(./__text/footer__text.css);
+
+
+.footer {
+  margin: 66px auto 60px auto;
+  /* max-width: 318px; */
+  max-width: 882px;
+  width: auto;
+  font-size: 18px;
+  line-height: 22px;
+  color: #545454;
+  padding: 0px;
+  text-align: left;
+}
+
+
+
+@media screen and (max-width: 820px) {
+  .footer {
+
+  }
+}
+
+@media screen and (max-width: 520px) {
+  .footer {
+    max-width: 282px;
+ }
+}

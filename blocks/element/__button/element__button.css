@@ -1,0 +1,8 @@
+.element__button {
+  width: 20.76px;
+  background-image: url(../../../images/element-button.svg);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: none;
+}
