@@ -9,5 +9,9 @@
   border: 1px solid #fff;
   box-sizing: border-box;
   display: flex;
+  transition: opacity 0.5s;
 }
 
+.profile__edit-button:hover {
+  opacity: 0.6;
+}

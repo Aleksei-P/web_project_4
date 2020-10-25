@@ -13,14 +13,6 @@
   text-align: left;
 }
 
-
-
-@media screen and (max-width: 820px) {
-  .footer {
-
-  }
-}
-
 @media screen and (max-width: 520px) {
   .footer {
     max-width: 282px;

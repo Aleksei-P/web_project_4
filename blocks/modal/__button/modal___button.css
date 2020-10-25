@@ -1,0 +1,33 @@
+.modal__button {
+  height: 40px;
+  width: 40px;
+  align-self: flex-end;
+  margin-top: -40px;
+  margin-right: -40px;
+  background-image: url(../../../images/close-icon.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: black;
+  border: none;
+  transition: opacity 0.5s;
+}
+
+.modal__button:hover {
+  opacity: 0.6;
+}
+
+@keyframes rotation {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(45deg); }
+}
+
+  .rotation:hover {
+animation: rotation 1s alternate linear infinite;
+}
+
+@media screen and (max-width: 520px) {
+  .modal__button {
+    max-width: 282px;
+    margin-right: 0px;
+ }
+}
