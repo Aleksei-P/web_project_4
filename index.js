@@ -12,13 +12,13 @@ form.addEventListener('submit', (event) => {
   profileName.textContent = nameInput.value;
   profileInfo.textContent = infoInput.value;
 
-  toogleModal()
+  toggleModal()
 
 })
 
-function toogleModal() {
-   modal.classList.toggle('modal_open');
+function toggleModal() {
+  modal.classList.toggle('modal_open');
 }
 
-editButton.addEventListener('click', toogleModal)
-closeButton.addEventListener('click', toogleModal)
+editButton.addEventListener('click', toggleModal)
+closeButton.addEventListener('click', toggleModal)
