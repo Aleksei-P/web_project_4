@@ -4,8 +4,9 @@ const form = document.querySelector('.form');
 const modal = document.querySelector('.modal');
 const nameInput = document.querySelector('.form__input_type_name');
 const infoInput = document.querySelector('.form__input_type_info');
-const profileName = document.querySelector('.popup__value_type_name');
-const profileInfo = document.querySelector('.popup__value_type_info');
+const profileName = document.querySelector('.profile__title');
+const profileInfo = document.querySelector('.profile__subtitle');
+
 
 form.addEventListener('submit', (event) => {
   event.preventDefault();

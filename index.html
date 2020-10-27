@@ -17,12 +17,12 @@
         <img class="profile__avatar-image" alt="image" src="./images/image.jpg">
       <!-- </div> -->
       <div class="profile__info">
-        <h1 class="profile__title popup__value popup__value_type_name">Jacques Cousteau</h1>
-        <button class="profile__edit-button"></button>
-        <p class="profile__subtitle popup__value popup__value_type_info">Explorer</p>
+        <h1 class="profile__title">Jacques Cousteau</h1>
+        <button aria-label="edit-profile" type="button" class="profile__edit-button"></button>
+        <p class="profile__subtitle">Explorer</p>
         <!-- <button class="profile__edit-button"></button> -->
       </div>
-      <button class="profile__add-button"></button>
+      <button aria-label="add-button" type="button" class="profile__add-button"></button>
     </section>
     <div class="elements">
       <article class="element">
@@ -74,12 +74,12 @@
   </footer>
     <div class="modal">
       <div class="modal__container">
-        <button class="modal__button rotation"></button>
+        <button aria-label="open-modal" type="button" class="modal__button rotation"></button>
         <form class="form" action="#">
-          <p class="form__header">Edit profile</p>
+          <h2 class="form__header">Edit profile</h2>
           <input  class="form__input form__input_type_name" type="text" name="name" value="Jacques Cousteau">
           <input class="form__input form__input_type_info" type="text" name="info" value="Explorer">
-          <button class="form__button" type="submit">Save</button>
+          <button aria-label="save-profile" class="form__button" type="submit">Save</button>
         </form>
       </div>
     </div>
