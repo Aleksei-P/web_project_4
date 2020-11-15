@@ -1,8 +1,12 @@
 @import url(./__button/modal__button.css);
 @import url(./__container/modal__container.css);
+@import url(./__popup-image/modal_popup-image.css);
+@import url(./modal_image.css);
+@import url(./__figure/modal__figure.css);
+@import url(./__popup-title/modal__popup-title.css);
 
 .modal {
-  display: none;
+  display: flex;
   position: fixed;
   background-color: rgba(0,0,0,0.5);
   height: 100%;
@@ -12,10 +16,19 @@
   align-items: center;
   justify-content: center;
   box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 1s ease-in-out;
+
 }
 
 .modal_open {
-  display: flex;
+  /* display: flex; */
+  visibility: visible;
+  opacity: 1;
+
+
+
 }
 
 /* @media screen and (max-width: 520px) {

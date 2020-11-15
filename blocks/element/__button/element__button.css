@@ -5,4 +5,9 @@
   background-repeat: no-repeat;
   background-position: center;
   border: none;
+  background-color: transparent;
+}
+
+.element__button_like {
+  background-image: url(../../../images/element-button-like-on.svg);
 }
