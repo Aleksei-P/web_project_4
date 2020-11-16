@@ -1,5 +1,3 @@
-//Sorry, I have been very confused with the code
-
 //modal windows
 const modal = document.querySelector('.modal');
 const modalEdit = document.querySelector('.modal_edit');
@@ -23,6 +21,9 @@ const saveImage = modalAdd.querySelector('.form__button');
 const formAdd = modalAdd.querySelector('.form');
 const imageNewTitle = modalAdd.querySelector('.form__input_type_card-title');
 const imageNewLink = modalAdd.querySelector('.form__input_type_url');
+
+
+
 
 
 
@@ -130,17 +131,54 @@ initialCards.forEach(data => {
     popupImage.src = data.link;
     popupImageTitle.textContent = data.name;
 
+  })
+
 })
+
+/*
+function addCard() {
+  const cardElement = initialCards;
+
+  list.prepend(cardTemplate);
+};
 
 //new image submit
 
-  formAdd.addEventListener('submit', (event) => {
-    event.preventDefault();
-    cardTitle.textContent = imageNewTitle.value;
-    cardImage.src = imageNewLink.value;
-    initialCards.push(imageNewTitle.value, imageNewLink.value);
+formAdd.addEventListener('submit', (event) => {
+  event.preventDefault();
+  cardTitle.textContent = imageNewTitle.value;
+  cardImage.src = imageNewLink.value;
+  addCard(imageNewTitle.value, imageNewLink.value);
 
-    toggleModalAdd()
-  });
+});
+*/
+/*
+function addCard() {
+  let imageNewTitle = modalAdd.querySelector('.form__input_type_card-title');
+  let imageNewLink = modalAdd.querySelector('.form__input_type_url');
 
-})
+  imageNewLink.insertAdjacentHTML('beforeend', imageNewTitle);
+
+  imageNewLink.value = '';
+  imageNewTitle.value = '';
+}
+
+saveImage.addEventListener('click', addCard);
+*/
+
+function addCard() {
+  const cardImage = document.querySelector('.element__image');
+  const cardTitle = document.querySelector('.element__title');
+  const list = document.querySelector('.elements');
+
+  list.prepend();
+};
+
+//new image submit
+
+formAdd.addEventListener('submit', (event) => {
+  event.preventDefault();
+
+  addCard(imageNewTitle.value, imageNewLink.value);
+
+});
