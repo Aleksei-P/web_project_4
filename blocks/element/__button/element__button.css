@@ -6,6 +6,7 @@
   background-position: center;
   border: none;
   background-color: transparent;
+  cursor: pointer;
 }
 
 .element__button_like {
