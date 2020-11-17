@@ -161,6 +161,14 @@ initialCards.forEach(data => {
 
    cardLikeButton.addEventListener('click', (e) => {
      e.target.classList.toggle('element__button_like');
+
+
+   })
+   cardImage.addEventListener('click', () => {
+     toggleModalPopupImage();
+     popupImage.src = data.link;
+     popupImageTitle.textContent = data.name;
+
    })
  };
 
