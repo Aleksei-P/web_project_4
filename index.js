@@ -101,6 +101,7 @@ const initialCards = [
 
 ];
 
+/* start 1st version
 
 initialCards.forEach(data => {
   const cardTemplate = document.querySelector('.elements').content.querySelector('.element');
@@ -135,6 +136,49 @@ initialCards.forEach(data => {
 
 })
 
+//end 1st version
+*/
+
+// 2d version
+ function createCard(data) {
+   const cardTemplate = document.querySelector('.elements').content.querySelector('.element');
+   const cardElement = cardTemplate.cloneNode(true);
+   const cardImage = cardElement.querySelector('.element__image');
+   const cardTitle = cardElement.querySelector('.element__title');
+   const cardLikeButton = cardElement.querySelector('.element__button');
+   const cardLikeButtonOn = cardElement.querySelector('.element__button_like')
+   const cardDelete = cardElement.querySelector('.element__delete');
+
+   cardTitle.textContent = data.name;
+   cardImage.src = data.link;
+   const list = document.querySelector('.elements');
+   list.prepend(cardElement);
+
+   cardDelete.addEventListener('click', (e) => {
+     e.target.closest('.element').remove();
+   });
+
+   cardLikeButton.addEventListener('click', (e) => {
+     e.target.classList.toggle('element__button_like');
+   })
+ }
+
+initialCards.forEach(data => {
+  createCard(data);
+});
+
+function addCard(data) {
+  const list = document.querySelector('.element');
+  list.prepend(createCard(data));
+};
+
+formAdd.addEventListener('submit', (event) => {
+  event.preventDefault();
+  addCard(imageNewTitle.value, imageNewLink.value);
+});
+
+
+
 /*
 function addCard() {
   const cardElement = initialCards;
@@ -165,7 +209,7 @@ function addCard() {
 
 saveImage.addEventListener('click', addCard);
 */
-
+/*
 function addCard() {
   const cardImage = document.querySelector('.element__image');
   const cardTitle = document.querySelector('.element__title');
@@ -182,3 +226,6 @@ formAdd.addEventListener('submit', (event) => {
   addCard(imageNewTitle.value, imageNewLink.value);
 
 });
+*/
+
+
