@@ -149,6 +149,7 @@ initialCards.forEach(data => {
    const cardLikeButtonOn = cardElement.querySelector('.element__button_like')
    const cardDelete = cardElement.querySelector('.element__delete');
 
+
    cardTitle.textContent = data.name;
    cardImage.src = data.link;
    const list = document.querySelector('.elements');
@@ -161,7 +162,7 @@ initialCards.forEach(data => {
    cardLikeButton.addEventListener('click', (e) => {
      e.target.classList.toggle('element__button_like');
    })
- }
+ };
 
 initialCards.forEach(data => {
   createCard(data);
@@ -174,7 +175,8 @@ function addCard(data) {
 
 formAdd.addEventListener('submit', (event) => {
   event.preventDefault();
-  addCard(imageNewTitle.value, imageNewLink.value);
+  addCard({name: imageNewTitle.value, link: imageNewLink.value});
+  toggleModalAdd();
 });
 
 
