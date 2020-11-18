@@ -18,3 +18,11 @@
     max-width: 282px;
  }
 }
+
+.modal__container_backgroud {
+  background: none;
+  max-width: 75vw;
+  max-height: 75vh;
+  top: 90px;
+  position: fixed;
+}

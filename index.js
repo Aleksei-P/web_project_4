@@ -176,66 +176,14 @@ initialCards.forEach(data => {
   createCard(data);
 });
 
+/*
 function addCard(data) {
-  const list = document.querySelector('.element');
-  list.prepend(createCard(data));
+    createCard(data);
 };
+*/
 
 formAdd.addEventListener('submit', (event) => {
   event.preventDefault();
-  addCard({name: imageNewTitle.value, link: imageNewLink.value});
+  createCard({name: imageNewTitle.value, link: imageNewLink.value});
   toggleModalAdd();
 });
-
-
-
-/*
-function addCard() {
-  const cardElement = initialCards;
-
-  list.prepend(cardTemplate);
-};
-
-//new image submit
-
-formAdd.addEventListener('submit', (event) => {
-  event.preventDefault();
-  cardTitle.textContent = imageNewTitle.value;
-  cardImage.src = imageNewLink.value;
-  addCard(imageNewTitle.value, imageNewLink.value);
-
-});
-*/
-/*
-function addCard() {
-  let imageNewTitle = modalAdd.querySelector('.form__input_type_card-title');
-  let imageNewLink = modalAdd.querySelector('.form__input_type_url');
-
-  imageNewLink.insertAdjacentHTML('beforeend', imageNewTitle);
-
-  imageNewLink.value = '';
-  imageNewTitle.value = '';
-}
-
-saveImage.addEventListener('click', addCard);
-*/
-/*
-function addCard() {
-  const cardImage = document.querySelector('.element__image');
-  const cardTitle = document.querySelector('.element__title');
-  const list = document.querySelector('.elements');
-
-  list.prepend();
-};
-
-//new image submit
-
-formAdd.addEventListener('submit', (event) => {
-  event.preventDefault();
-
-  addCard(imageNewTitle.value, imageNewLink.value);
-
-});
-*/
-
-

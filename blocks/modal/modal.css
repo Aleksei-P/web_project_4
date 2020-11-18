@@ -4,6 +4,7 @@
 @import url(./modal_image.css);
 @import url(./__figure/modal__figure.css);
 @import url(./__popup-title/modal__popup-title.css);
+@import url(./modal_image.css);
 
 .modal {
   display: flex;
