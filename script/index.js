@@ -29,7 +29,7 @@ const infoInput = document.querySelector('.form__input_type_info');
 const profileName = document.querySelector('.profile__title');
 const profileInfo = document.querySelector('.profile__subtitle');
 
-function openPopup(popup) {
+function togglePopup(popup) {
   popup.classList.toggle('modal_open');
 };
 
@@ -40,17 +40,16 @@ form.addEventListener('submit', (event) => {
   profileName.textContent = nameInput.value;
   profileInfo.textContent = infoInput.value;
 
-  openPopup(modalEdit);
+  togglePopup(modalEdit);
 })
 
+editButton.addEventListener('click', () => {togglePopup(modalEdit);});
+closeButton.addEventListener('click', () => {togglePopup(modalEdit);});
 
-editButton.addEventListener('click', () => {openPopup(modalEdit);});
-closeButton.addEventListener('click', () => {openPopup(modalEdit);});
+closePopupImage.addEventListener('click', () => {togglePopup(modalImage);});
 
-closePopupImage.addEventListener('click', () => {openPopup(modalImage);});
-
-addButton.addEventListener('click', () => {openPopup(modalAdd);});
-closeAddButton.addEventListener('click', () => {openPopup(modalAdd); });
+addButton.addEventListener('click', () => {togglePopup(modalAdd);});
+closeAddButton.addEventListener('click', () => {togglePopup(modalAdd);});
 
 //Cards <template>
 
@@ -81,6 +80,8 @@ const initialCards = [
   },
 ];
 
+//create and load cards
+
  function createCard(data) {
    const cardTemplate = document.querySelector('.elements').content.querySelector('.element');
    const cardElement = cardTemplate.cloneNode(true);
@@ -91,7 +92,6 @@ const initialCards = [
 
    cardTitle.textContent = data.name;
    cardImage.src = data.link, alt = "cardImage";
-   list.prepend(cardElement);
 
    cardDelete.addEventListener('click', (e) => {
      e.target.closest('.element').remove();
@@ -102,10 +102,11 @@ const initialCards = [
 
    })
    cardImage.addEventListener('click', (e) => {
-     openPopup(modalImage);
+     togglePopup(modalImage);
      popupImage.src = data.link;
      popupImageTitle.textContent = data.name;
    })
+   list.prepend(cardElement);
    return (cardElement);
  };
 
@@ -116,5 +117,5 @@ initialCards.forEach(data => {
 formAdd.addEventListener('submit', (event) => {
   event.preventDefault();
   createCard({name: imageNewTitle.value, link: imageNewLink.value});
-  openPopup(modalAdd);
+  togglePopup(modalAdd);
 });
