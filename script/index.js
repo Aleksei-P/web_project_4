@@ -82,9 +82,9 @@ const initialCards = [
 
 //create and load cards
 
- function createCard(data) {
-   const cardTemplate = document.querySelector('.elements').content.querySelector('.element');
-   const cardElement = cardTemplate.cloneNode(true);
+function createCard(data) {
+  const cardTemplate = document.querySelector('.elements').content.querySelector('.element');
+  const cardElement = cardTemplate.cloneNode(true);
    const cardImage = cardElement.querySelector('.element__image');
    const cardTitle = cardElement.querySelector('.element__title');
    const cardLikeButton = cardElement.querySelector('.element__button');
@@ -106,16 +106,21 @@ const initialCards = [
      popupImage.src = data.link;
      popupImageTitle.textContent = data.name;
    })
-   list.prepend(cardElement);
    return (cardElement);
- };
+  };
 
-initialCards.forEach(data => {
-  createCard(data);
-});
+  function loadCard(data) {
+    list.prepend(createCard(data));
+  };
 
-formAdd.addEventListener('submit', (event) => {
-  event.preventDefault();
-  createCard({name: imageNewTitle.value, link: imageNewLink.value});
-  togglePopup(modalAdd);
-});
+  initialCards.forEach(data => {
+    loadCard(data);
+  });
+
+
+  formAdd.addEventListener('submit', (event) => {
+    event.preventDefault();
+    createCard({name: imageNewTitle.value, link: imageNewLink.value});
+    togglePopup(modalAdd);
+  });
+
