@@ -117,10 +117,9 @@ function createCard(data) {
     loadCard(data);
   });
 
-
   formAdd.addEventListener('submit', (event) => {
     event.preventDefault();
-    createCard({name: imageNewTitle.value, link: imageNewLink.value});
+    loadCard({name: imageNewTitle.value, link: imageNewLink.value});
     togglePopup(modalAdd);
   });
 
