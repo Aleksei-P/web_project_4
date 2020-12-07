@@ -45,8 +45,10 @@
         <button aria-label="close-modal" type="button" class="modal__button"></button>
         <form class="form" action="#">
           <h2 class="form__header">Edit profile</h2>
-          <input  class="form__input form__input_type_name" type="text" name="name" value="Jacques Cousteau" required>
-          <input class="form__input form__input_type_info" type="text" name="info" value="Explorer" required>
+          <input id="inputName" class="form__input form__input_type_name" type="text" name="name" value="Jacques Cousteau" minlength="2" maxlength="40" required>
+          <span id="inputName-error" class="form__error"></span>
+          <input id="inputInfo" class="form__input form__input_type_info" type="text" name="info" value="Explorer" minlength="2" maxlength="200" required>
+          <span id="inputInfo-error" class="form__error"></span>
           <button class="form__button" type="submit">Save</button>
         </form>
       </div>
@@ -57,8 +59,10 @@
           <button aria-label="close-modal" type="button" class="modal__button"></button>
           <form class="form">
             <h2 class="form__header">New place</h2>
-            <input class="form__input form__input_type_card-title" type="text" name="titel" placeholder="title" value="" required>
-            <input class="form__input form__input_type_url" type="url" name="image link" placeholder="link" value="" required>
+            <input id="inputNamePlace" class="form__input form__input_type_card-title" type="text" name="titel" placeholder="title" value="" minlength="2" maxlength="30" required>
+            <span id="inputNamePlace-error" class="form__error"></span>
+            <input id="inputLinkPlace" class="form__input form__input_type_url" type="url" name="image link" placeholder="link" value="" minlength="2" required>
+            <span id="inputLinkPlaceE-error" class="form__error"></span>
             <button class="form__button" type="submit">Save</button>
           </form>
         </div>
@@ -74,5 +78,6 @@
       </div>
     </div>
     <script src="./script/index.js"></script>
+    <script src="./script/validation.js"></script>
 </body>
 </html>

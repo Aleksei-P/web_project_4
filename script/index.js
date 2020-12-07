@@ -122,4 +122,3 @@ function createCard(data) {
     loadCard({name: imageNewTitle.value, link: imageNewLink.value});
     togglePopup(modalAdd);
   });
-
