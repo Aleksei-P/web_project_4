@@ -52,7 +52,7 @@ function enableValidation({formSelector, inputSelector, submitButtonSelector, ..
     inputs.forEach((input) => {
       input.addEventListener('input', () => {
         checkInputVslidity(input, form, rest);
-        toggleButtomState(inputs, form, rest);
+        toggleButtomState(inputs, button, rest);
       })
     })
   })
