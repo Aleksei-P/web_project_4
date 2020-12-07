@@ -51,6 +51,7 @@ editButton.addEventListener('click', () => {togglePopup(modalEdit);});
 addButton.addEventListener('click', () => {togglePopup(modalAdd);});
 // closeAddButton.addEventListener('click', () => {togglePopup(modalAdd);});
 
+
 //close with button escape
 
 document.addEventListener('keydown', function (evt) {
@@ -61,17 +62,16 @@ document.addEventListener('keydown', function (evt) {
   }
 });
 
-// close with click
 
-modal.addEventListener('click', function (evt) {
-  if (evt.target.className != ('form' || 'form__input' || 'form__input_type_name' || 'form__header' || 'profile__title' || 'profile__subtitle')) {
+modalEdit.addEventListener('click', function (evt) {
+  if (evt.target === modalEdit) {
   togglePopup(modalEdit);
 }
   else { closeButton.addEventListener('click', () => { togglePopup(modalEdit); });}
 });
 
 modalAdd.addEventListener('click', function (evt) {
-  if (evt.target != ('.form' || '.form__input' || '.form__input_type_name' || 'form__header' || '.modal_open')) {
+  if (evt.target === modalAdd) {
     togglePopup(modalAdd);
   }
   else { closeAddButton.addEventListener('click', () =>
