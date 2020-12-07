@@ -51,6 +51,21 @@ closePopupImage.addEventListener('click', () => {togglePopup(modalImage);});
 addButton.addEventListener('click', () => {togglePopup(modalAdd);});
 closeAddButton.addEventListener('click', () => {togglePopup(modalAdd);});
 
+//close button escape
+
+function escapeClose (evt) {
+  if (evt.key === 'Escape') {
+    togglePopup(popup);
+  }
+};
+
+closePopupImage.addEventListener('keydown', escapeClose);
+closePopupImage.addEventListener('keydown', function (evt) {
+  if (evt.key === 'Escape') {
+     togglePopup(modalImage);
+  }
+});
+
 //Cards <template>
 
 const initialCards = [
