@@ -1,5 +1,7 @@
 .form__error{
   color: #FF0000;
   width: calc(100% - 72px);
-  margin: 0px auto 0px auto;
+  margin: 5px auto 0px auto;
+  font-size: 12px;
+  line-height: 15px;
 }

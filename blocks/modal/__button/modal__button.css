@@ -7,7 +7,7 @@
   background-image: url(../../../images/close-icon.svg);
   background-repeat: no-repeat;
   background-position: center;
-  background-color: black;
+  background-color: transparent;
   border: none;
   transition: opacity 0.5s;
   cursor: pointer;

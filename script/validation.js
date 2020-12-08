@@ -1,7 +1,4 @@
 // forms
-// enabling validation by calling enableValidation()
-// pass all the settings on call
-
 // show error
 function showErrorMessage(input, form, { errorClass, inputErrorClass, ...rest }) {
   //const error = document.getElementById('inputProfileError');
@@ -33,15 +30,12 @@ function toggleButtomState(inputs, button, {inactiveButtonClass, ...rest}) {
   const isValid = inputs.every((input) => input.validity.valid)
   if(isValid) {
     button.classList.remove(inactiveButtonClass);
-    // button.removeAttribute('disabled')
   } else {
-    button.classList.add(inactiveButtonClass, inactiveButtonClass);
-    // button.setAttribute('disabled', 'disabled')
+    button.classList.add(inactiveButtonClass);
     }
-    return isValid
   }
 
-
+//validation of each forms input fields
 function enableValidation({ formSelector, inputSelector, submitButtonSelector, ...rest}) {
   const forms = [...document.querySelectorAll(formSelector)];
   forms.forEach((form) => {
@@ -49,7 +43,7 @@ function enableValidation({ formSelector, inputSelector, submitButtonSelector, .
       e.preventDefault();
     }))
 
-    const inputs = [...document.querySelectorAll(inputSelector)];
+    const inputs = [...form.querySelectorAll(inputSelector)];
     const button = form.querySelector(submitButtonSelector);
 
     inputs.forEach((input) => {
