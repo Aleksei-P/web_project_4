@@ -1,5 +1,4 @@
 //modal windows
-const modal = document.querySelector('.modal');
 const modalEdit = document.querySelector('.modal_edit');
 const modalAdd = document.querySelector('.modal_add');
 const modalImage = document.querySelector('.modal_image');
@@ -10,7 +9,7 @@ const popupImageTitle = modalImage.querySelector('.modal__popup-title');
 //button
 const addButton = document.querySelector('.profile__add-button');
 const editButton = document.querySelector('.profile__edit-button');
-const closeButton = modal.querySelector('.modal__button');
+const closeButton = document.querySelector('.modal__button');
 const closeAddButton = modalAdd.querySelector('.modal__button');
 const closePopupImage = modalImage.querySelector('.modal__button');
 const saveImage = modalAdd.querySelector('.form__button');
@@ -44,79 +43,46 @@ form.addEventListener('submit', (event) => {
 })
 
 editButton.addEventListener('click', () => {togglePopup(modalEdit);});
-// closeButton.addEventListener('click', () => {togglePopup(modalEdit);});
+closeButton.addEventListener('click', () => {togglePopup(modalEdit);});
 
-// closePopupImage.addEventListener('click', () => {togglePopup(modalImage);});
+closePopupImage.addEventListener('click', () => {togglePopup(modalImage);});
 
 addButton.addEventListener('click', () => {togglePopup(modalAdd);});
-// closeAddButton.addEventListener('click', () => {togglePopup(modalAdd);});
+closeAddButton.addEventListener('click', () => {togglePopup(modalAdd);});
 
+//не понимаю зачем нужны оба прослушивателя и это ли вы имели ввиду...
+document.removeEventListener('keydown', closeWithEscape);
 
-//close with button escape
+document.addEventListener('keydown', closeWithEscape);
 
-document.addEventListener('keydown', function (evt) {
+function closeWithEscape (evt) {
   if (evt.key === 'Escape') {
     modalImage.classList.remove('modal_open');
     modalEdit.classList.remove('modal_open');
     modalAdd.classList.remove('modal_open');
   }
-});
-
+}
 
 modalEdit.addEventListener('click', function (evt) {
   if (evt.target === modalEdit) {
   togglePopup(modalEdit);
 }
-  else { closeButton.addEventListener('click', () => { togglePopup(modalEdit); });}
 });
 
 modalAdd.addEventListener('click', function (evt) {
   if (evt.target === modalAdd) {
     togglePopup(modalAdd);
   }
-  else { closeAddButton.addEventListener('click', () =>
-   { togglePopup(modalAdd); });}
-});
+ });
 
 modalImage.addEventListener('click', function (evt) {
-  if (evt.target.className != 'modal__popup-image' ) {
+  if (evt.target === modalImage) {
     togglePopup(modalImage);
   }
-  else { closePopupImage.addEventListener('click', () =>
-  { togglePopup(modalImage); });}
 });
-
-
-
-//Cards <template>
-
-const initialCards = [
-  {
-    name: "Yosemite Valley",
-    link: "https://code.s3.yandex.net/web-code/yosemite.jpg"
-  },
-  {
-    name: "Lake Louise",
-    link: "https://code.s3.yandex.net/web-code/lake-louise.jpg"
-  },
-  {
-    name: "Bald Mountains",
-    link: "https://code.s3.yandex.net/web-code/bald-mountains.jpg"
-  },
-  {
-    name: "Latemar",
-    link: "https://code.s3.yandex.net/web-code/latemar.jpg"
-  },
-  {
-    name: "Vanoise National Park",
-    link: "https://code.s3.yandex.net/web-code/vanoise.jpg"
-  },
-  {
-    name: "Lago di Braies",
-    link: "https://code.s3.yandex.net/web-code/lago.jpg"
-  },
-];
-
+/*
+initialCards,js
+*/
 //create and load cards
 
 function createCard(data) {
@@ -159,36 +125,3 @@ initialCards.forEach(data => {
     loadCard({name: imageNewTitle.value, link: imageNewLink.value});
     togglePopup(modalAdd);
   });
-
-  /*
-
-  modal.addEventListener('click', function () {
-    togglePopup(modalEdit);
-  });
-  modalAdd.addEventListener('click', function () {
-    modalAdd.classList.remove('modal_open');
-  });
-
-  modalImage.addEventListener('click', function () {
-    modalImage.classList.remove('modal_open');
-  });
-
-  modal.onclick = function(e) {
-     if (e.target.className = 'modal_open') {
-       modalImage.style.display = 'none';
-   }
-  }
-     document.addEventListener('click', function (evt) {
-       if (evt.target.classList = modal) {
-         modalImage.classList.remove('modal_open');
-         modalEdit.classList.remove('modal_open');
-         modalAdd.classList.remove('modal_open');
-       }
-      });
-
-      document.onclick = function (evt) {
-        if (evt.target.className != 'modal') {
-          togglePopup(modalImage);
-        };
-      };
-  */

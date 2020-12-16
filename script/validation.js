@@ -16,7 +16,6 @@ function hideErrorMessage(input, form, { errorClass, inputErrorClass, ...rest })
   input.classList.remove(inputErrorClass);
 }
 
-
 function checkInputVslidity(input, form, rest) {
   if (input.validity.valid) {
     hideErrorMessage(input, form, rest)
@@ -30,8 +29,10 @@ function toggleButtomState(inputs, button, {inactiveButtonClass, ...rest}) {
   const isValid = inputs.every((input) => input.validity.valid)
   if(isValid) {
     button.classList.remove(inactiveButtonClass);
+    button.removeAttribute("disabled");
   } else {
     button.classList.add(inactiveButtonClass);
+    button.setAttribute("disabled", true);
     }
   }
 
@@ -49,7 +50,7 @@ function enableValidation({ formSelector, inputSelector, submitButtonSelector, .
     inputs.forEach((input) => {
       input.addEventListener('input', () => {
         checkInputVslidity(input, form, rest);
-        toggleButtomState(inputs, button, rest);
+        toggleButtomState(inputs, button, rest,);
       })
     })
   })
