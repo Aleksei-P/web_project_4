@@ -30,6 +30,13 @@ const profileInfo = document.querySelector('.profile__subtitle');
 
 function togglePopup(popup) {
   popup.classList.toggle('modal_open');
+  closeWithEscape;
+  if ('modal_open') {
+    document.addEventListener('keydown', closeWithEscape);
+  }
+  else {
+    document.removeEventListener('keydown', closeWithEscape);
+  }
 };
 
 //profile form submit
@@ -50,18 +57,11 @@ closePopupImage.addEventListener('click', () => {togglePopup(modalImage);});
 addButton.addEventListener('click', () => {togglePopup(modalAdd);});
 closeAddButton.addEventListener('click', () => {togglePopup(modalAdd);});
 
-//не понимаю зачем нужны оба прослушивателя и это ли вы имели ввиду...
-document.removeEventListener('keydown', closeWithEscape);
-
-document.addEventListener('keydown', closeWithEscape);
-
 function closeWithEscape (evt) {
   if (evt.key === 'Escape') {
-    modalImage.classList.remove('modal_open');
-    modalEdit.classList.remove('modal_open');
-    modalAdd.classList.remove('modal_open');
+    togglePopup(document.querySelector('.modal_open'));
   }
-}
+};
 
 modalEdit.addEventListener('click', function (evt) {
   if (evt.target === modalEdit) {
