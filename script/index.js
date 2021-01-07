@@ -1,6 +1,30 @@
-//modal windows
+import FormValidator from './FormValidator';
+import Card from './Card.js';
+
+const defultConfig = {
+  formSelector: ".form",
+  inputSelector: ".form__input",
+  submitButtonSelector: ".form__button",
+  inactiveButtonClass: "form__button_disabled",
+  inputErrorClass: "form__input_type_error",
+  errorClass: "form__error_visible"
+}
+
 const modalEdit = document.querySelector('.modal_edit');
 const modalAdd = document.querySelector('.modal_add');
+
+const addCardForm = modalAdd.querySelector('.form');
+const editProfile = modalEdit.querySelector('.form');
+
+
+const editFormValidator = new FormValidator(defultConfig, editProfile);
+const addFormValidator = new FormValidator(defultConfig, addCardForm);
+
+editFormValidator.enableValidation()
+addFormValidator.enableValidation()
+
+
+//modal windows
 const modalImage = document.querySelector('.modal_image');
 
 const popupImage = modalImage.querySelector('.modal__popup-image');
@@ -30,7 +54,6 @@ const profileInfo = document.querySelector('.profile__subtitle');
 
 function togglePopup(popup) {
   popup.classList.toggle('modal_open');
-  closeWithEscape;
   if ('modal_open') {
     document.addEventListener('keydown', closeWithEscape);
   }
@@ -85,32 +108,7 @@ initialCards,js
 */
 //create and load cards
 
-function createCard(data) {
-  const cardTemplate = document.querySelector('.elements').content.querySelector('.element');
-  const cardElement = cardTemplate.cloneNode(true);
-  const cardImage = cardElement.querySelector('.element__image');
-  const cardTitle = cardElement.querySelector('.element__title');
-  const cardLikeButton = cardElement.querySelector('.element__button');
-  const cardDelete = cardElement.querySelector('.element__delete');
 
-  cardTitle.textContent = data.name;
-  cardImage.src = data.link, alt = "cardImage";
-
-  cardDelete.addEventListener('click', (e) => {
-    e.target.closest('.element').remove();
-  });
-
-  cardLikeButton.addEventListener('click', (e) => {
-    e.target.classList.toggle('element__button_like');
-
-  })
-  cardImage.addEventListener('click', (e) => {
-    togglePopup(modalImage);
-    popupImage.src = data.link;
-    popupImageTitle.textContent = data.name;
-  })
-  return (cardElement);
-};
 
 function loadCard(data) {
   list.prepend(createCard(data));
