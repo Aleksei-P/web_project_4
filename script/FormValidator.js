@@ -1,4 +1,4 @@
-class FormValidator {
+ class FormValidator {
   constructor(settings, formElement) {
     this._formSelector = settings.formSelector;
     this._submitButtonSelector = settings.submitButtonSelector;
@@ -14,9 +14,6 @@ class FormValidator {
     error.classList.add(this._errorClass);
     input.classList.add(this._inputErrorClass);
   }
-
-
-
 
   _hideErrorMessage(input, validationMessage) {
   const error = this._form.querySelector('#' + input.id + '-error');
