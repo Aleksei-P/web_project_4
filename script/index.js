@@ -1,5 +1,7 @@
-import FormValidator from './FormValidator.js';
+// import FormValidator from './FormValidator';
 import Card from './Card.js';
+
+
 
 const defultConfig = {
   formSelector: ".form",
@@ -106,13 +108,17 @@ modalImage.addEventListener('click', function (evt) {
 /*
 initialCards,js
 */
+
 //create and load cards
 
-
-
 function loadCard(data) {
-  list.prepend(createCard(data));
-};
+const list = document.querySelector('.elements');
+ const card = new Card() ({
+   list.prepend(generateCard())
+
+
+})
+}
 
 initialCards.forEach(data => {
     loadCard(data);

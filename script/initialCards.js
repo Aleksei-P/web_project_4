@@ -1,5 +1,4 @@
 //Cards <template>
-
 const initialCards = [
   {
     name: "Yosemite Valley",
