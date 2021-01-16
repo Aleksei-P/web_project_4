@@ -111,11 +111,11 @@ initialCards,js
 */
 
 //create and load cards
+const templateSelector = ".elements"
 
  function loadCard(data) {
-const list = document.querySelector('.elements');
- const card = new Card()
-   prepend(generateCard())
+ const card = new Card(data, templateSelector)
+   templateSelector.prepend(generateCard(data))
 }
 
 
