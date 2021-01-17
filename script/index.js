@@ -1,4 +1,4 @@
-// import FormValidator from './FormValidator';
+import FormValidator from './FormValidator';
 import initialCards from './initialCards.js'
 import Card from './Card.js';
 
@@ -20,11 +20,11 @@ const addCardForm = modalAdd.querySelector('.form');
 const editProfile = modalEdit.querySelector('.form');
 
 
-// const editFormValidator = new FormValidator(defultConfig, editProfile);
-// const addFormValidator = new FormValidator(defultConfig, addCardForm);
+const editFormValidator = new FormValidator(defultConfig, editProfile);
+const addFormValidator = new FormValidator(defultConfig, addCardForm);
 
-// editFormValidator.enableValidation()
-// addFormValidator.enableValidation()
+editFormValidator.enableValidation()
+addFormValidator.enableValidation()
 
 
 //modal windows
