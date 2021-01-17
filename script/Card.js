@@ -7,6 +7,8 @@ class Card {
 
   _getCardTemplate() {
     const cardTemplate = document.querySelector(this._templateSelector).content.querySelector('.element');
+    // this.card = this.cardTemplate.cloneNode(true);
+
 
     return cardTemplate;
 
@@ -34,14 +36,10 @@ class Card {
 
   generateCard() {
     this._card = this._getCardTemplate().cloneNode(true);
-
     const cardTitle = this._card.querySelector('.element__title');
-
     const cardImage = this._card.querySelector('.element__image');
-
     cardTitle.textContent = this._name;
-    cardImage.src = this._link, alt = "cardImage";
-
+    cardImage.src = this._link;
     this._setEventListeners();
 
     return this._card;

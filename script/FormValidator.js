@@ -9,7 +9,7 @@
  }
 
   _showErrorMessage(input, validationMessage) {
-    const error = this._form.querySelector('#' + input.id + '-error'); // замена document -> this
+    const error = this._form.querySelector('#' + input.id + '-error'); //  document -> this
     error.textContent = input.validationMessage;
     error.classList.add(this._errorClass);
     input.classList.add(this._inputErrorClass);
