@@ -28,14 +28,16 @@ _checkInputVslidity(input) {
   if (input.validity.valid) {
     this._hideErrorMessage(input);
   } else {
-    this._showErrorMessage(input, input.validationMessage);
+    this._showErrorMessage(input);
   }
 }
 
 
 
 _toggleButtomState(inputs, button) {
-  if (this.isValid) {
+   const isValid = inputs.every((input) => input.validity.valid);
+
+  if (isValid) {
     button.classList.remove(this._inactiveButtonClass);
     button.removeAttribute("disabled");
   } else {
@@ -47,7 +49,7 @@ _toggleButtomState(inputs, button) {
 _setEventListeners() {
   const inputs = Array.from(this._form.querySelectorAll(this._inputSelector));
   const button = this._form.querySelector(this._submitButtonSelector);
-  const isValid = inputs.every((input) => input.validity.valid);
+  // const isValid = inputs.every((input) => input.validity.valid);
   inputs.forEach((input) => {
     input.addEventListener('input', () => {
       this._checkInputVslidity(input);
