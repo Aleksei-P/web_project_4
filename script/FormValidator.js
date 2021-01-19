@@ -32,14 +32,10 @@ _checkInputVslidity(input) {
   }
 }
 
-_isValid(inputs) {
-  return inputs.every((input) => {
-    return input.validity.valid;
-  });
-}
+
 
 _toggleButtomState(inputs, button) {
-  if (this._isValid) {
+  if (this.isValid) {
     button.classList.remove(this._inactiveButtonClass);
     button.removeAttribute("disabled");
   } else {
@@ -51,7 +47,7 @@ _toggleButtomState(inputs, button) {
 _setEventListeners() {
   const inputs = Array.from(this._form.querySelectorAll(this._inputSelector));
   const button = this._form.querySelector(this._submitButtonSelector);
-
+  const isValid = inputs.every((input) => input.validity.valid);
   inputs.forEach((input) => {
     input.addEventListener('input', () => {
       this._checkInputVslidity(input);
