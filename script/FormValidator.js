@@ -43,13 +43,13 @@ _toggleButtomState(inputs, button) {
 }
 
 _setEventListeners() {
-  const inputs = Array.form(this._form.querySelectorAll(this._inputSelector));
+  const inputs = Array.from(this._form.querySelectorAll(this._inputSelector));
   const button = this._form.querySelector(this._submitButtonSelector);
 
   inputs.forEach((input) => {
     input.addEventListener('input', () => {
-      this._checkInputVslidity();
-      this._toggleButtomState();
+      this._checkInputVslidity(input);
+      this._toggleButtomState(input, button, this._inactiveButtonClass);
     });
   });
 
