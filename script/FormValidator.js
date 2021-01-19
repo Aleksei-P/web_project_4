@@ -32,13 +32,19 @@ _checkInputVslidity(input) {
   }
 }
 
+_isValid(inputs) {
+  return inputs.every((input) => {
+    return input.validity.valid;
+  });
+}
+
 _toggleButtomState(inputs, button) {
   if (this._isValid) {
-    this.button.classList.remove(this._inactiveButtonClass);
-    this.button.removeAttribute("disabled");
+    button.classList.remove(this._inactiveButtonClass);
+    button.removeAttribute("disabled");
   } else {
-    this.button.classList.add(this._inactiveButtonClass);
-    this.button.setAttribute("disabled", true);
+    button.classList.add(this._inactiveButtonClass);
+    button.setAttribute("disabled", true);
   }
 }
 
