@@ -34,11 +34,11 @@ _checkInputVslidity(input) {
 
 _toggleButtomState(inputs, button) {
   if (this._isValid) {
-    this._button.classList.remove(this._inactiveButtonClass);
-    this._button.removeAttribute("disabled");
+    this.button.classList.remove(this._inactiveButtonClass);
+    this.button.removeAttribute("disabled");
   } else {
-    this._button.classList.add(this._inactiveButtonClass);
-    this._button.setAttribute("disabled", true);
+    this.button.classList.add(this._inactiveButtonClass);
+    this.button.setAttribute("disabled", true);
   }
 }
 
