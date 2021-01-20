@@ -34,8 +34,9 @@ _checkInputVslidity(input) {
 
 
 
-_toggleButtomState(inputs, button) {
-   const isValid = inputs.every((input) => input.validity.valid);
+_toggleButtomState(inputs, input, button) {
+
+  function isValid() { inputs.every((input) => input.validity.valid)};
 
   if (isValid) {
     button.classList.remove(this._inactiveButtonClass);
@@ -53,7 +54,7 @@ _setEventListeners() {
   inputs.forEach((input) => {
     input.addEventListener('input', () => {
       this._checkInputVslidity(input);
-      this._toggleButtomState(input, button, this._inactiveButtonClass);
+      this._toggleButtomState(input, inputs, button, this._inactiveButtonClass);
     });
   });
 
