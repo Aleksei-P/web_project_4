@@ -1,3 +1,5 @@
+import { togglePopup } from './index.js'
+import { modalImage, popupImage, popupImageTitle } from './index.js'
 class Card {
   constructor(data, templateSelector) {
     this._link = data.link;
@@ -23,10 +25,11 @@ class Card {
       e.target.classList.toggle('element__button_like');
 
     })
+
     cardImage.addEventListener('click', (e) => {
       togglePopup(modalImage);
-      popupImage.src = data.link;
-      popupImageTitle.textContent = data.name;
+      popupImage.src = this._link;
+      popupImageTitle.textContent = this._name;
     })
   }
 

@@ -24,7 +24,6 @@ const addFormValidator = new FormValidator(defultConfig, addCardForm);
 editFormValidator.enableValidation()
 addFormValidator.enableValidation()
 
-
 //modal windows
 const modalImage = document.querySelector('.modal_image');
 
@@ -127,3 +126,6 @@ initialCards.forEach(data => {
     loadCard({name: imageNewTitle.value, link: imageNewLink.value});
     togglePopup(modalAdd);
   });
+
+export  { togglePopup };
+export { modalImage, popupImage, popupImageTitle };
