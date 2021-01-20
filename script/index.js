@@ -2,8 +2,6 @@ import FormValidator from './FormValidator.js'
 import initialCards from './initialCards.js'
 import Card from './Card.js';
 
-
-
 const defultConfig = {
   formSelector: ".form",
   inputSelector: ".form__input",
@@ -67,8 +65,8 @@ function togglePopup(popup) {
 
 //profile form submit
 
-form.addEventListener('submit', (event) => {
-  event.preventDefault();
+form.addEventListener('submit', (evt) => {
+  evt.preventDefault();
   profileName.textContent = nameInput.value;
   profileInfo.textContent = infoInput.value;
 
@@ -106,6 +104,7 @@ modalImage.addEventListener('click', function (evt) {
     togglePopup(modalImage);
   }
 });
+
 /*
 initialCards,js
 */
@@ -119,13 +118,12 @@ function loadCard(data) {
    list.prepend(cardGen)
 }
 
-
 initialCards.forEach(data => {
     loadCard(data);
   });
 
-  formAdd.addEventListener('submit', (event) => {
-    event.preventDefault();
+  formAdd.addEventListener('submit', (evt) => {
+    evt.preventDefault();
     loadCard({name: imageNewTitle.value, link: imageNewLink.value});
     togglePopup(modalAdd);
   });

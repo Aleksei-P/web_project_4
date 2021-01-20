@@ -9,14 +9,16 @@
     this._form = formElement;
  }
 
-  _showErrorMessage(input, validationMessage) {
-    const error = this._form.querySelector('#' + input.id + '-error'); //  document -> this
+ //show error input
+  _showErrorMessage(input) {
+    const error = this._form.querySelector('#' + input.id + '-error');
     error.textContent = input.validationMessage;
     error.classList.add(this._errorClass);
     input.classList.add(this._inputErrorClass);
   }
 
-  _hideErrorMessage(input, validationMessage) {
+  // hide error input
+  _hideErrorMessage(input) {
   const error = this._form.querySelector('#' + input.id + '-error');
   error.textContent = '';
 
@@ -24,6 +26,7 @@
   input.classList.remove(this._inputErrorClass);
 }
 
+// check the input
 _checkInputVslidity(input) {
   if (input.validity.valid) {
     this._hideErrorMessage(input);
@@ -32,11 +35,9 @@ _checkInputVslidity(input) {
   }
 }
 
-
-
-_toggleButtomState(inputs, input, button) {
-
-  function isValid() { inputs.every((input) => input.validity.valid)};
+// change state of buttons
+_toggleButtomState(inputs, button) {
+  const isValid = inputs.every((input) => input.validity.valid);
 
   if (isValid) {
     button.classList.remove(this._inactiveButtonClass);
@@ -50,31 +51,22 @@ _toggleButtomState(inputs, input, button) {
 _setEventListeners() {
   const inputs = Array.from(this._form.querySelectorAll(this._inputSelector));
   const button = this._form.querySelector(this._submitButtonSelector);
-  // const isValid = inputs.every((input) => input.validity.valid);
+
   inputs.forEach((input) => {
     input.addEventListener('input', () => {
       this._checkInputVslidity(input);
-      this._toggleButtomState(input, inputs, button, this._inactiveButtonClass);
+      this._toggleButtomState(inputs, button);
     });
   });
-
 }
 
+// enable buttons validation
 enableValidation() {
   this._form.addEventListener('submit', ((e) => {
       e.preventDefault();
     }))
     this._setEventListeners();
-}
+  }
 }
 
 export default FormValidator;
-
-// {
-//   formSelector: ".form",
-//   inputSelector: ".form__input",
-//   submitButtonSelector: ".form__button",
-//   inactiveButtonClass: "form__button_disabled",
-//   inputErrorClass: "form__input_type_error",
-//   errorClass: "form__error_visible"
-// }
