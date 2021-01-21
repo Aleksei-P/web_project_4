@@ -17,7 +17,6 @@ const modalAdd = document.querySelector('.modal_add');
 const addCardForm = modalAdd.querySelector('.form');
 const editProfile = modalEdit.querySelector('.form');
 
-
 const editFormValidator = new FormValidator(defultConfig, editProfile);
 const addFormValidator = new FormValidator(defultConfig, addCardForm);
 
@@ -53,8 +52,8 @@ const profileName = document.querySelector('.profile__title');
 const profileInfo = document.querySelector('.profile__subtitle');
 
 function togglePopup(popup) {
-  popup.classList.toggle('modal_open');
-  if ('modal_open') {
+    popup.classList.toggle('modal_open');
+  if (popup.classList.contains('modal_open')) {
     document.addEventListener('keydown', closeWithEscape);
   }
   else {
@@ -68,21 +67,35 @@ form.addEventListener('submit', (evt) => {
   evt.preventDefault();
   profileName.textContent = nameInput.value;
   profileInfo.textContent = infoInput.value;
-
   togglePopup(modalEdit);
 })
 
-editButton.addEventListener('click', () => {togglePopup(modalEdit);});
-closeButton.addEventListener('click', () => {togglePopup(modalEdit);});
-
-closePopupImage.addEventListener('click', () => {togglePopup(modalImage);});
-
-addButton.addEventListener('click', () => {togglePopup(modalAdd);});
-closeAddButton.addEventListener('click', () => {togglePopup(modalAdd);});
+editButton.addEventListener('click', () => {togglePopup(modalEdit);
+  editFormValidator.resetValidationError();
+});
+closeButton.addEventListener('click', () => {
+  nameInput.value = profileName.textContent;
+  infoInput.value = profileInfo.textContent;
+  togglePopup(modalEdit);});
+closePopupImage.addEventListener('click', () => {
+  togglePopup(modalImage);
+});
+addButton.addEventListener('click', () => {togglePopup(modalAdd);
+  addFormValidator.resetValidationError();
+});
+closeAddButton.addEventListener('click', () => {
+  togglePopup(modalAdd);
+  imageNewTitle.value = "";
+  imageNewLink.value = "";
+});
 
 function closeWithEscape (evt) {
   if (evt.key === 'Escape') {
     togglePopup(document.querySelector('.modal_open'));
+    nameInput.value = profileName.textContent;
+    infoInput.value = profileInfo.textContent;
+    imageNewTitle.value = "";
+    imageNewLink.value = "";
   }
 };
 
@@ -110,11 +123,15 @@ initialCards,js
 
 //create and load cards
 
+function createCard(data) {
+    const templateSelector = ".elements";
+    const card = new Card(data, templateSelector);
+   return card.generateCard();
+  }
+
 function loadCard(data) {
-  const templateSelector = ".elements";
-  const card = new Card(data, templateSelector)
-  const cardGen = card.generateCard();
-   list.prepend(cardGen)
+  const cardGen = createCard(data);
+   list.prepend(cardGen);
 }
 
 initialCards.forEach(data => {

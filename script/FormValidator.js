@@ -34,28 +34,32 @@ _checkInputVslidity(input) {
     this._showErrorMessage(input);
   }
 }
+   resetValidationError() {
+     this._inputs.forEach((input) => {
+       this._hideErrorMessage(input);
+     });
+   }
 
 // change state of buttons
 _toggleButtomState(inputs, button) {
-  const isValid = inputs.every((input) => input.validity.valid);
+  this._isValid = inputs.every((input) => input.validity.valid);
 
-  if (isValid) {
-    button.classList.remove(this._inactiveButtonClass);
-    button.removeAttribute("disabled");
+  if (this._isValid) {
+    this._button.classList.remove(this._inactiveButtonClass);
+    this._button.removeAttribute("disabled");
   } else {
-    button.classList.add(this._inactiveButtonClass);
-    button.setAttribute("disabled", true);
+    this._button.classList.add(this._inactiveButtonClass);
+    this._button.setAttribute("disabled", true);
   }
 }
 
 _setEventListeners() {
-  const inputs = Array.from(this._form.querySelectorAll(this._inputSelector));
-  const button = this._form.querySelector(this._submitButtonSelector);
-
-  inputs.forEach((input) => {
+  this._inputs = Array.from(this._form.querySelectorAll(this._inputSelector));
+  this._button = this._form.querySelector(this._submitButtonSelector);
+  this._inputs.forEach((input) => {
     input.addEventListener('input', () => {
       this._checkInputVslidity(input);
-      this._toggleButtomState(inputs, button);
+      this._toggleButtomState(this._inputs, this._button);
     });
   });
 }
