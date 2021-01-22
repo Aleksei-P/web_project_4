@@ -71,6 +71,7 @@ form.addEventListener('submit', (evt) => {
 })
 
 // open Profile and reset unsaved inputs
+// Спасибо!
 editButton.addEventListener('click', () => {
   togglePopup(modalEdit);
   nameInput.value = profileName.textContent;
