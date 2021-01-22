@@ -70,6 +70,7 @@ form.addEventListener('submit', (evt) => {
   togglePopup(modalEdit);
 })
 
+// open Profile and reset unsaved inputs
 editButton.addEventListener('click', () => {
   togglePopup(modalEdit);
   nameInput.value = profileName.textContent;
@@ -83,6 +84,7 @@ closePopupImage.addEventListener('click', () => {
   togglePopup(modalImage);
 });
 
+// open add card popup and reset unsaved inputs
 addButton.addEventListener('click', () => {togglePopup(modalAdd);
   imageNewTitle.value = "";
   imageNewLink.value = "";
