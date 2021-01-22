@@ -70,32 +70,32 @@ form.addEventListener('submit', (evt) => {
   togglePopup(modalEdit);
 })
 
-editButton.addEventListener('click', () => {togglePopup(modalEdit);
-  editFormValidator.resetValidationError();
-});
-closeButton.addEventListener('click', () => {
+editButton.addEventListener('click', () => {
+  togglePopup(modalEdit);
   nameInput.value = profileName.textContent;
   infoInput.value = profileInfo.textContent;
+  editFormValidator.resetValidationError();
+});
+
+closeButton.addEventListener('click', () => {
   togglePopup(modalEdit);});
 closePopupImage.addEventListener('click', () => {
   togglePopup(modalImage);
 });
+
 addButton.addEventListener('click', () => {togglePopup(modalAdd);
-  addFormValidator.resetValidationError();
-});
-closeAddButton.addEventListener('click', () => {
-  togglePopup(modalAdd);
   imageNewTitle.value = "";
   imageNewLink.value = "";
+  addFormValidator.resetValidationError();
+});
+
+closeAddButton.addEventListener('click', () => {
+  togglePopup(modalAdd);
 });
 
 function closeWithEscape (evt) {
   if (evt.key === 'Escape') {
     togglePopup(document.querySelector('.modal_open'));
-    nameInput.value = profileName.textContent;
-    infoInput.value = profileInfo.textContent;
-    imageNewTitle.value = "";
-    imageNewLink.value = "";
   }
 };
 
