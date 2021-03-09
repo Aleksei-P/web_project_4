@@ -1,14 +1,15 @@
-import { togglePopup } from './index.js'
-import { modalImage, popupImage, popupImageTitle } from './index.js'
+ import { togglePopup } from './index.js'
+ import { modalImage, popupImage, popupImageTitle } from './units.js'
 class Card {
-  constructor(data, templateSelector) {
+  constructor(data, cardSelector, handleCardClick) {
     this._link = data.link;
     this._name = data.name;
-    this._templateSelector = templateSelector;
+    this._cardSelector = cardSelector;
+    this._handleCardClick = handleCardClick;
   }
 
   _getCardTemplate() {
-    this._cardTemplate = document.querySelector(this._templateSelector).content.querySelector('.element');
+    this._cardTemplate = document.querySelector(this._cardSelector).content.querySelector('.element');
     return this._cardTemplate;
   }
 
@@ -24,11 +25,8 @@ class Card {
 
     })
 
-    this._cardImage.addEventListener('click', (e) => {
-      togglePopup(modalImage);
-      popupImage.src = this._link;
-      popupImageTitle.textContent = this._name;
-    })
+    this._cardImage.addEventListener('click', () => this._handleCardClick(this._name, this._link));
+
   }
 
   generateCard() {
@@ -43,4 +41,16 @@ class Card {
   }
 }
 
-export default Card;
+
+
+
+// new Card(
+//   {
+//     data: {...},
+//     handleCardClick: (name, link) => {
+//       imageModal.open(name, link)
+//     }
+//   }
+//   )
+
+  export default Card;

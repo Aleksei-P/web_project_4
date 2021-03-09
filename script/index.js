@@ -1,6 +1,8 @@
 import FormValidator from './FormValidator.js'
 import initialCards from './initialCards.js'
 import Card from './Card.js';
+import PopupWithImage from './Popup.js';
+import Section from './Section.js';
 
 const defultConfig = {
   formSelector: ".form",
@@ -51,15 +53,8 @@ const infoInput = document.querySelector('.form__input_type_info');
 const profileName = document.querySelector('.profile__title');
 const profileInfo = document.querySelector('.profile__subtitle');
 
-function togglePopup(popup) {
-    popup.classList.toggle('modal_open');
-  if (popup.classList.contains('modal_open')) {
-    document.addEventListener('keydown', closeWithEscape);
-  }
-  else {
-    document.removeEventListener('keydown', closeWithEscape);
-  }
-};
+
+
 
 //profile form submit
 
@@ -71,7 +66,6 @@ form.addEventListener('submit', (evt) => {
 })
 
 // open Profile and reset unsaved inputs
-// Спасибо!
 editButton.addEventListener('click', () => {
   togglePopup(modalEdit);
   nameInput.value = profileName.textContent;
@@ -126,26 +120,49 @@ initialCards,js
 
 //create and load cards
 
+/*
 function createCard(data) {
-    const templateSelector = ".elements";
-    const card = new Card(data, templateSelector);
-   return card.generateCard();
-  }
-
+  const templateSelector = ".elements";
+  const card = new Card(data, templateSelector);
+  return card.generateCard();
+}
 function loadCard(data) {
   const cardGen = createCard(data);
-   list.prepend(cardGen);
+  list.prepend(cardGen);
 }
 
+
 initialCards.forEach(data => {
-    loadCard(data);
-  });
+  loadCard(data);
+});
+*/
 
   formAdd.addEventListener('submit', (evt) => {
     evt.preventDefault();
     loadCard({name: imageNewTitle.value, link: imageNewLink.value});
     togglePopup(modalAdd);
   });
+/*
+const imageModal = new PopupWithImage('.modal__popup-image');
+imageModal.setEventListeners();
+*/
 
-export  { togglePopup };
+const loadElements = new Section({
+  items: initialCards,
+  renderer: (item) => {
+    const card = new Card(item, ".elements");
+    const cardElement = card.generateCard();
+    loadElements.addItem(cardElement);
+  }
+}, "elements"
+);
+
+loadElements.render();
+
+const popupImageWindow = new PopupWithImage('.modal__popup-image');
+popupImageWindow.addEventListener();
+
+//export  { togglePopup };
 export { modalImage, popupImage, popupImageTitle };
+
+
