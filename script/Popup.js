@@ -20,7 +20,7 @@
 
      setEventListeners() {
       this._popupElement.addEventListener('click', (evt) => {
-        if (evt.target.classList.contains('.modal__button') || !evt.target.closest('modal_open')) {
+        if (evt.target.classList.contains('.modal__button') || !evt.target == ('modal_open')) {
           this.close();
         }
 
@@ -74,9 +74,7 @@ class PopupWithForm extends Popup {
     super.close();
     this._form.reset();
   }
-  open() {
-    super.open();
-  }
+
   /*
   this._editButton.addEventListener('click', () => this._modalEdit.open());
   open() {
