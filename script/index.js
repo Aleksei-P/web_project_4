@@ -1,8 +1,9 @@
 import FormValidator from './FormValidator.js'
 import initialCards from './initialCards.js'
 import Card from './Card.js';
-import PopupWithImage from './Popup.js';
+import { PopupWithImage, Popup, PopupWithForm } from './Popup.js';
 import Section from './Section.js';
+import { togglePopup, closeWithEscape } from './utils.js';
 
 const defultConfig = {
   formSelector: ".form",
@@ -66,12 +67,14 @@ form.addEventListener('submit', (evt) => {
 })
 
 // open Profile and reset unsaved inputs
+/*
 editButton.addEventListener('click', () => {
   togglePopup(modalEdit);
   nameInput.value = profileName.textContent;
   infoInput.value = profileInfo.textContent;
   editFormValidator.resetValidationError();
 });
+*/
 
 closeButton.addEventListener('click', () => {
   togglePopup(modalEdit);});
@@ -89,12 +92,6 @@ addButton.addEventListener('click', () => {togglePopup(modalAdd);
 closeAddButton.addEventListener('click', () => {
   togglePopup(modalAdd);
 });
-
-function closeWithEscape (evt) {
-  if (evt.key === 'Escape') {
-    togglePopup(document.querySelector('.modal_open'));
-  }
-};
 
 modalEdit.addEventListener('click', function (evt) {
   if (evt.target === modalEdit) {
@@ -114,38 +111,11 @@ modalImage.addEventListener('click', function (evt) {
   }
 });
 
-/*
-initialCards,js
-*/
-
-//create and load cards
-
-/*
-function createCard(data) {
-  const templateSelector = ".elements";
-  const card = new Card(data, templateSelector);
-  return card.generateCard();
-}
-function loadCard(data) {
-  const cardGen = createCard(data);
-  list.prepend(cardGen);
-}
-
-
-initialCards.forEach(data => {
-  loadCard(data);
-});
-*/
-
   formAdd.addEventListener('submit', (evt) => {
     evt.preventDefault();
     loadCard({name: imageNewTitle.value, link: imageNewLink.value});
     togglePopup(modalAdd);
   });
-/*
-const imageModal = new PopupWithImage('.modal__popup-image');
-imageModal.setEventListeners();
-*/
 
 const loadElements = new Section({
   items: initialCards,
@@ -160,9 +130,21 @@ const loadElements = new Section({
 loadElements.render();
 
 const popupImageWindow = new PopupWithImage('.modal__popup-image');
-popupImageWindow.addEventListener();
+popupImageWindow.setEventListeners();
+
+const popupEditWindow = new PopupWithForm('.modal_edit');
+popupEditWindow.setEventListeners();
+editButton.addEventListener('click', () => popupEditWindow.open() );
+
 
 //export  { togglePopup };
 export { modalImage, popupImage, popupImageTitle };
 
-
+/*
+editButton.addEventListener('click', () => {
+  togglePopup(modalEdit);
+  nameInput.value = profileName.textContent;
+  infoInput.value = profileInfo.textContent;
+  editFormValidator.resetValidationError();
+});
+*/
