@@ -4,6 +4,7 @@ import Card from './Card.js';
 import { PopupWithImage, Popup, PopupWithForm } from './Popup.js';
 import Section from './Section.js';
 import { togglePopup, closeWithEscape } from './utils.js';
+import UserInfo from './UserInfo.js';
 
 const defultConfig = {
   formSelector: ".form",
@@ -132,9 +133,22 @@ loadElements.render();
 const popupImageWindow = new PopupWithImage('.modal__popup-image');
 popupImageWindow.setEventListeners();
 
-const popupEditWindow = new PopupWithForm('.modal_edit');
+const userInfo = new UserInfo();
+
+const popupEditWindow = new PopupWithForm({
+  popupSelector: '.modal_edit',
+  submitHandler: (data) => { setUserInfo({
+    name: data.nameInput,
+    info: data.infoInput
+  })
+    userInfo.setUserInfo(nameInput, nameInput);
+    }
+
+})
+
 popupEditWindow.setEventListeners();
 editButton.addEventListener('click', () => popupEditWindow.open() );
+
 
 
 //export  { togglePopup };
@@ -142,7 +156,6 @@ export { modalImage, popupImage, popupImageTitle };
 
 /*
 editButton.addEventListener('click', () => {
-  togglePopup(modalEdit);
   nameInput.value = profileName.textContent;
   infoInput.value = profileInfo.textContent;
   editFormValidator.resetValidationError();
