@@ -133,31 +133,31 @@ loadElements.render();
 const popupImageWindow = new PopupWithImage('.modal__popup-image');
 popupImageWindow.setEventListeners();
 
-const userInfo = new UserInfo();
+
+const userInfo = new UserInfo(profileName, profileInfo);
 
 const popupEditWindow = new PopupWithForm({
   popupSelector: '.modal_edit',
-  submitHandler: (data) => { setUserInfo({
-    name: data.nameInput,
-    info: data.infoInput
-  })
-    userInfo.setUserInfo(nameInput, nameInput);
-    }
+  submitHandler: (data) => {
+    userInfo.setUserInfo(data.nameInput, data.infoInput);
+  }
 
-})
+});
+
+editButton.addEventListener('click', () => {
+  const userData = userInfo.getUserInfo();
+  nameInput.value = userData.name;
+  infoInput.value = userData.info;
+  popupEditWindow.open();
+});
 
 popupEditWindow.setEventListeners();
 editButton.addEventListener('click', () => popupEditWindow.open() );
 
 
 
+
 //export  { togglePopup };
 export { modalImage, popupImage, popupImageTitle };
 
-/*
-editButton.addEventListener('click', () => {
-  nameInput.value = profileName.textContent;
-  infoInput.value = profileInfo.textContent;
-  editFormValidator.resetValidationError();
-});
-*/
+
