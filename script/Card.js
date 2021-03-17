@@ -14,11 +14,20 @@ class Card {
   }
 
   _setEventListeners() {
+    this._cardImage = this._card.querySelector('.element__image');
     this._cardLikeButton = this._card.querySelector('.element__button');
     this._cardDelete = this._card.querySelector('.element__delete');
+
     this._cardDelete.addEventListener('click', (e) => {
       e.target.closest('.element').remove();
     });
+
+
+      this._cardImage.addEventListener('click', () => {
+        this._handleCardClick()
+      });
+     // togglePopup(modalImage);
+
 
     this._cardLikeButton.addEventListener('click', (e) => {
       e.target.classList.toggle('element__button_like');
@@ -26,13 +35,6 @@ class Card {
     })
 
 
-    this._cardImage.addEventListener('click', () => {
-      popupImage.src = this._link;
-      popupImageTitle.textContent = this._name;
-      togglePopup(modalImage);
-
-      this._cardImage.addEventListener('click', () => this._handleCardClick());
-    })
 
   }
 

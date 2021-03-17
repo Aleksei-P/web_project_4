@@ -139,10 +139,11 @@ const userInfo = new UserInfo(profileName, profileInfo);
 const popupEditWindow = new PopupWithForm({
   popupSelector: '.modal_edit',
   submitHandler: (data) => {
-    userInfo.setUserInfo(data.nameInput, data.infoInput);
+    userInfo.setUserInfo(data.name, data.info);
   }
 
 });
+console.log(popupEditWindow)
 
 editButton.addEventListener('click', () => {
   const userData = userInfo.getUserInfo();

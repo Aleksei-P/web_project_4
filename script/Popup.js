@@ -20,7 +20,7 @@
 
      setEventListeners() {
       this._popupElement.addEventListener('click', (evt) => {
-        if (evt.target.classList.contains('.modal__button') || !evt.target == ('modal_open')) {
+        if (evt.target == ('.modal__button') || !evt.target == ('modal_open')) {
           this.close();
         }
 
@@ -52,22 +52,21 @@ class PopupWithForm extends Popup {
   }
 
   _getInputValues() {
-    this._inputs = this._popupElement.querySelector('.form__input');
+    this._inputs = this._popupElement.querySelectorAll('.form__input');
     this._values = {};
-
-    inputs.forEach((input) => {
-      values[input.name] = input.value;
+    this._inputs.forEach((input) => {
+      this._values[input.name] = input.value;
     })
     return this._values;
   }
 
   setEventListeners() {
-    super.setEventListeners();
-    this._form = this._popupElement.querySelector('.form');
-    this._form.addEventListener('submit', (e) => {
+    // this._form = this._popupElement.querySelector('.form');
+      this._popupElement.addEventListener('submit', (e) => {
       e.preventDefault();
-      this._submitHandler(this._getInputValues);
-    } )
+      this._submitHandler(this._getInputValues());
+    });
+    super.setEventListeners();
   }
 
   close() {
