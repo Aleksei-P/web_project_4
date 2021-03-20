@@ -1,5 +1,6 @@
  class Popup {
      constructor(popupSelector) {
+       //console.log('popupSelector', popupSelector)
          this._popupElement = document.querySelector(popupSelector);
          this._handleEscClose = this._handleEscClose.bind(this);
      }
@@ -43,7 +44,7 @@ class PopupWithImage extends Popup {
 };
 
 class PopupWithForm extends Popup {
-  constructor(popupSelector, submitHandler) {
+  constructor({popupSelector, submitHandler}) {
     super(popupSelector);
     this._submitHandler = submitHandler;
     this._editButton = document.querySelector('.profile__edit-button')
@@ -71,7 +72,7 @@ class PopupWithForm extends Popup {
 
   close() {
     super.close();
-    this._form.reset();
+    this._popupElement.querySelector('.form').reset();
   }
 
   /*
