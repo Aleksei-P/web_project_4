@@ -123,11 +123,12 @@ const loadElements = new Section({
   renderer: (item) => {
     const card = new Card(item, ".elements");
     const cardElement = card.generateCard();
-    //loadElements.addItem(cardElement);
     return cardElement;
   }
-}, "elements"
+},
+"elements"
 );
+
 
 loadElements.render();
 
@@ -147,31 +148,31 @@ const popupEditWindow = new PopupWithForm({
 });
 
 // editButton.addEventListener('click', () => {
-//   const userData = userInfo.getUserInfo();
-//   nameInput.value = userData.name;
-//   infoInput.value = userData.info;
-//   });
+  //   const userData = userInfo.getUserInfo();
+  //   nameInput.value = userData.name;
+  //   infoInput.value = userData.info;
+  //   });
 
 popupEditWindow.setEventListeners();
 editButton.addEventListener('click', () => popupEditWindow.open() );
 closeButton.addEventListener('click', () => popupEditWindow.close());
 
-const cardInfo = {
-  name: "Name",
-  link: " "
-};
-
 const popupAddCardWindow = new PopupWithForm({
-  popupSelector:'.modal',
-  submitHandle: (data) => {
-  Section.render(data)
+  popupSelector:'.modal_add',
+  submitHandler: (data) => {
+    loadElements.createCard(data)
+  }
 }
-})
+)
 
-// const popupAddCardWindow = new PopupWithForm({
-//   popupSelector: '.modal_add',
-//   submitHandler: (data) => {
-//     Section.render( data]);
+
+
+ // createCard.addItem(data);
+
+  // const popupAddCardWindow = new PopupWithForm({
+    //   popupSelector: '.modal_add',
+    //   submitHandler: (data) => {
+  //     Section.render( data]);
 
 //   }
 // })
@@ -181,12 +182,11 @@ addButton.addEventListener('click', () => popupAddCardWindow.open());
 closeButton.addEventListener('click', () => popupAddCardWindow.close());
 
 // addButton.addEventListener('click', () => {
-//   const NewCard = userInfo.getUserInfo();
-//   imageNewTitle.value = NewCard.name;
-//   imageNewLink.value = NewCard.info;
+  //   const NewCard = userInfo.getUserInfo();
+  //   imageNewTitle.value = NewCard.name;
+  //   imageNewLink.value = NewCard.info;
 // })
-
-
+//loadElements.addItem(popupAddCardWindow.generateCard());
 
 //export  { togglePopup };
 export { modalImage, popupImage, popupImageTitle };

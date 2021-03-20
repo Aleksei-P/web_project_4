@@ -16,7 +16,12 @@ render() {
     this.addItem(this._renderer(item))
   });
 }
+createCard(data) {
+  this._renderer(data)
+  this.addItem(this._renderer(data))
 }
+}
+
 
 /*
 addItem(element) {
