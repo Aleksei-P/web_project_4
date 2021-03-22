@@ -19,6 +19,7 @@ render() {
 createCard(data) {
   this._renderer(data)
   this.addItem(this._renderer(data))
+
 }
 }
 
