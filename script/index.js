@@ -72,16 +72,15 @@ popupImageWindow.setEventListeners();
 
 const loadElements = new Section({
   items: initialCards,
-  renderer: (item) => {
-    const card = new Card(item, ".elements", ('click', (link, name) => { popupImageWindow.open(link, name)}));
+  renderer: (data) => {
+    const card = new Card(data, ".elements", (() => { popupImageWindow.open(data) }));
     const cardElement = card.generateCard();
     return cardElement;
   }
 },
-  "elements"
+"elements"
 );
-
-
+console.log(loadElements)
 
 loadElements.render();
 
@@ -100,7 +99,7 @@ const popupEditWindow = new PopupWithForm({
 const popupAddCardWindow = new PopupWithForm({
   popupSelector: '.modal_add',
   submitHandler: (data) => {
-    const newCard = new Card(data, ".elements", (link, name) => { popupImageWindow.open(link, name) });
+    const newCard = new Card(data, ".elements", (() => { popupImageWindow.open(data) }));
     const cardElement = newCard.generateCard();
     loadElements.addItem(cardElement)
   }

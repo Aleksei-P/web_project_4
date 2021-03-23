@@ -6,6 +6,8 @@
      }
      open() {
        this._popupElement.classList.add('modal_open');
+       document.addEventListener('keyup', this._handleEscClose);
+
      }
 
      close() {
@@ -35,15 +37,16 @@ class PopupWithImage extends Popup {
     this._imageTitle = this._popupElement.querySelector('.modal__popup-title');
 
   }
-  open(link, name) {
-    this._image.src = link;
-    this._imageTitle.textContent = name;
+  open(data) {
+    this._image.src = data.link;
+    this._imageTitle.textContent = data.name;
     super.open();
   }
   setEventListeners() {
     super.setEventListeners();
   }
 };
+
 
 class PopupWithForm extends Popup {
   constructor({popupSelector, submitHandler}) {
@@ -66,20 +69,21 @@ class PopupWithForm extends Popup {
   setEventListeners() {
     // this._form = this._popupElement.querySelector('.form');
       this._popupElement.addEventListener('submit', (e) => {
-      e.preventDefault();
-      this._submitHandler(this._getInputValues());
-    });
-    super.setEventListeners();
+        e.preventDefault();
+        this._submitHandler(this._getInputValues());
+      });
+      super.setEventListeners();
+    }
+
+    close() {
+      super.close();
+      this._popupElement.querySelector('.form').reset();
+    }
   }
 
-  close() {
-    super.close();
-    this._popupElement.querySelector('.form').reset();
-  }
-}
 
-export { Popup, PopupWithImage, PopupWithForm };
-// export default PopupWithImage;
+  export { Popup, PopupWithImage, PopupWithForm };
+  // export default PopupWithImage;
 
 
 
