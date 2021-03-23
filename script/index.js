@@ -56,22 +56,34 @@ const profileName = document.querySelector('.profile__title');
 const profileInfo = document.querySelector('.profile__subtitle');
 
 
+// const loadElements = new Section({
+//   items: initialCards,
+//   renderer: (item) => {
+//     const card = new Card(item, ".elements");
+//     const cardElement = card.generateCard();
+//     return cardElement;
+//   }
+// },
+// "elements"
+// );
+
+const popupImageWindow = new PopupWithImage('.modal__popup-image');
+popupImageWindow.setEventListeners();
+
 const loadElements = new Section({
   items: initialCards,
   renderer: (item) => {
-    const card = new Card(item, ".elements");
+    const card = new Card(item, ".elements", ('click', (link, name) => { popupImageWindow.open(link, name)}));
     const cardElement = card.generateCard();
     return cardElement;
   }
 },
-"elements"
+  "elements"
 );
 
 
-loadElements.render();
 
-const popupImageWindow = new PopupWithImage('.modal__popup-image');
-popupImageWindow.setEventListeners();
+loadElements.render();
 
 
 const userInfo = new UserInfo(profileName, profileInfo);
@@ -88,7 +100,7 @@ const popupEditWindow = new PopupWithForm({
 const popupAddCardWindow = new PopupWithForm({
   popupSelector: '.modal_add',
   submitHandler: (data) => {
-    const newCard = new Card(data, ".elements");
+    const newCard = new Card(data, ".elements", (link, name) => { popupImageWindow.open(link, name) });
     const cardElement = newCard.generateCard();
     loadElements.addItem(cardElement)
   }

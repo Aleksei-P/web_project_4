@@ -18,15 +18,14 @@ class Card {
     this._cardLikeButton = this._card.querySelector('.element__button');
     this._cardDelete = this._card.querySelector('.element__delete');
 
+
     this._cardDelete.addEventListener('click', (e) => {
       e.target.closest('.element').remove();
     });
 
-
       this._cardImage.addEventListener('click', () => {
         this._handleCardClick()
       });
-     // togglePopup(modalImage);
 
 
     this._cardLikeButton.addEventListener('click', (e) => {

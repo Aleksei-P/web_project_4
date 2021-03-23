@@ -21,21 +21,23 @@
 
      setEventListeners() {
       this._popupElement.addEventListener('click', (evt) => {
-        if (evt.target == ('.modal__button') || !evt.target == ('modal_open')) {
+        if (evt.target.classList.contains('.modal__button') || evt.target.classList.contains('modal_open')) {
           this.close();
         }
-
-      });
+       });
      }
  }
 
 class PopupWithImage extends Popup {
   constructor(popupSelector) {
     super(popupSelector)
+    this._image = this._popupElement.querySelector('.modal__popup-image');
+    this._imageTitle = this._popupElement.querySelector('.modal__popup-title');
+
   }
   open(link, name) {
-    this._popupElement.querySelector('.modal__popup-image').src = link;
-    this._popupElement.querySelector('.modal__popup-image').src = name;
+    this._image.src = link;
+    this._imageTitle.textContent = name;
     super.open();
   }
   setEventListeners() {
@@ -74,18 +76,6 @@ class PopupWithForm extends Popup {
     super.close();
     this._popupElement.querySelector('.form').reset();
   }
-
-  /*
-  this._editButton.addEventListener('click', () => this._modalEdit.open());
-  open() {
-    this._editButton.addEventListener('click', () => {
-     //togglePopup(modalEdit);
-     //nameInput.value = profileName.textContent;
-     //infoInput.value = profileInfo.textContent;
-     //editFormValidator.resetValidationError();
-   });
-  }
-  */
 }
 
 export { Popup, PopupWithImage, PopupWithForm };
