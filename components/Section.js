@@ -1,4 +1,3 @@
-
 export default class Section {
   constructor({ items, renderer }, cardElementContainerSelector ) {
     this._items = items;

@@ -1,5 +1,3 @@
-import { togglePopup } from './utils.js'
-import { modalImage, popupImage, popupImageTitle } from './index.js'
 class Card {
   constructor(data, cardSelector, handleCardClick) {
     this._link = data.link;
