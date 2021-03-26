@@ -52,6 +52,8 @@ const popupAddCardWindow = new PopupWithForm({
     //class Card {constructor(data, cardSelector, handleCardClick)}
     const cardElement = newCard.generateCard();
     loadElements.addItem(cardElement)
+    popupAddCardWindow.close();
+
   }
 }
 )
@@ -66,5 +68,3 @@ const popupAddCardWindow = new PopupWithForm({
   editButton.addEventListener('click', () => popupEditWindow.open());
   addButton.addEventListener('click', () => popupAddCardWindow.open());
   closePopupImage.addEventListener('click', () => popupImageWindow.close());
-
-
