@@ -39,7 +39,7 @@ const userInfo = new UserInfo(profileName, profileInfo);
 const popupEditWindow = new PopupWithForm({
   popupSelector: '.modal_edit',
   submitHandler: (data) => {
-    userInfo.setUserInfo(data.name, data.link);
+    userInfo.setUserInfo(data.name, data.info);
     //method setUserInfo(name, info) { this._name.textContent = name; this._info.textContent = info; };
     popupEditWindow.close();
   }
@@ -58,13 +58,18 @@ const popupAddCardWindow = new PopupWithForm({
 }
 )
 
+
   popupImageWindow.setEventListeners();
   popupEditWindow.setEventListeners();
   popupAddCardWindow.setEventListeners();
   // Event Listener for buttons
-  editButton.addEventListener('click', () => popupEditWindow.open() );
   closeButton.addEventListener('click', () => popupEditWindow.close());
   closeAddButton.addEventListener('click', () => popupAddCardWindow.close());
-  editButton.addEventListener('click', () => popupEditWindow.open());
   addButton.addEventListener('click', () => popupAddCardWindow.open());
   closePopupImage.addEventListener('click', () => popupImageWindow.close());
+  editButton.addEventListener('click', () => {
+    const userParameters = userInfo.getUserInfo();
+    nameInput.value = userParameters.name;
+    infoInput.value = userParameters.info;
+    popupEditWindow.open()
+  });
