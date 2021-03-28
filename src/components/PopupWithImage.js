@@ -12,9 +12,6 @@ class PopupWithImage extends Popup {
     this._imageTitle.textContent = data.name;
     super.open();
   }
-  setEventListeners() {
-    super.setEventListeners();
-  }
 };
 
 export default PopupWithImage;

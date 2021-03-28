@@ -62,6 +62,12 @@ _setEventListeners() {
       this._toggleButtomState(this._inputs, this._button);
     });
   });
+  this._form.addEventListener('reset', () => {
+    this._inputs.forEach((input) => {
+      this._hideErrorMessage(input)
+      this._toggleButtomState(this._inputs, this._button);
+    })
+  });
 }
 
 // enable buttons validation

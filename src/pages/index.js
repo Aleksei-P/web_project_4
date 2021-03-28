@@ -48,25 +48,20 @@ const popupEditWindow = new PopupWithForm({
 const popupAddCardWindow = new PopupWithForm({
   popupSelector: '.modal_add',
   submitHandler: (data) => {
-    const newCard = new Card(data, ".elements", () => popupImageWindow.open(data));
     //class Card {constructor(data, cardSelector, handleCardClick)}
-    const cardElement = newCard.generateCard();
-    loadElements.addItem(cardElement)
+    //class Section createCard(data) {this.addItem(this._renderer(data)) }}
+    loadElements.createCard(data);
     popupAddCardWindow.close();
 
   }
 }
 )
 
-
   popupImageWindow.setEventListeners();
   popupEditWindow.setEventListeners();
   popupAddCardWindow.setEventListeners();
-  // Event Listener for buttons
-  closeButton.addEventListener('click', () => popupEditWindow.close());
-  closeAddButton.addEventListener('click', () => popupAddCardWindow.close());
+  // // Event Listener for buttons, close listeners in the class Popup.
   addButton.addEventListener('click', () => popupAddCardWindow.open());
-  closePopupImage.addEventListener('click', () => popupImageWindow.close());
   editButton.addEventListener('click', () => {
     const userParameters = userInfo.getUserInfo();
     nameInput.value = userParameters.name;
