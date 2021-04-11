@@ -53,4 +53,11 @@ export default class Api {
       .then(res => res.ok ? res.json() : Promise.reject(`Error: ${res.status}`))
       .catch((err) => { console.log(err); })
   }
+
+  likeInfo(cardId, isLiked) {
+    if (isLiked) {
+
+    }
+  }
 }
+

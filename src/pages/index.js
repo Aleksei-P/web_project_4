@@ -34,9 +34,9 @@ addFormValidator.enableValidation()
 //Popup Image
 const popupImageWindow = new PopupWithImage('.modal_image');
 
-
+let loadElements;
 api.getCardList().then(cards => {
-const loadElements = new Section({
+loadElements = new Section({
   items: cards,
   renderer: (data) => {
     const card = new Card(data, ".elements", () => popupImageWindow.open(data),
@@ -73,8 +73,9 @@ const popupAddCardWindow = new PopupWithForm({
     //class Card {constructor(data, cardSelector, handleCardClick)}
     //class Section createCard(data) {this.addItem(this._renderer(data)) }}
     api.addCard(data).then(data => {
-      loadElements.createCard(data);
-    })
+
+      loadElements.generateCard(data);
+   })
     popupAddCardWindow.close();
   }
 }
