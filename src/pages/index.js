@@ -66,8 +66,8 @@ const popupEditWindow = new PopupWithForm({
       name:data.nameInput,
       about: data.infoInput
     })
-    .then((res) => {
-      userInfo.updateUserInfo(res.name, res.info);
+    .then(() => {
+      userInfo.setUserInfo(data.name, data.info);
     })
     //method setUserInfo(name, info) { this._name.textContent = name; this._info.textContent = info; };
     popupEditWindow.close();
