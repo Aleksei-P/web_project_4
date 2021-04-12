@@ -27,8 +27,8 @@ class Card {
     //   e.target.closest('.element').remove();
     // });
 
-    this._cardDelete.addEventListener('click', () => {
-      this._handleDeleteClick();
+    this._cardDelete.addEventListener('click', (e) => {
+      this._handleDeleteClick(e);
     });
 
     this._cardImage.addEventListener('click', () => {

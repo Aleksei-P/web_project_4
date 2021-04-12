@@ -40,8 +40,8 @@ loadElements = new Section({
   items: cards,
   renderer: (data) => {
     const card = new Card(data, ".elements", () => popupImageWindow.open(data),
-      () => api.deleteCard(data._id).then(() => {
-        card._handleDeleteClick(data._id)
+      (e) => api.deleteCard(data._id).then(() => {
+        e.target.closest('.element').remove()
       }
  ))
     //class Card {constructor(data, cardSelector, handleCardClick, handleDeleteClick)}
@@ -61,7 +61,14 @@ const userInfo = new UserInfo(profileName, profileInfo);
 const popupEditWindow = new PopupWithForm({
   popupSelector: '.modal_edit',
   submitHandler: (data) => {
-    userInfo.setUserInfo(data.name, data.info);
+    // userInfo.setUserInfo(data.name, data.info);
+    api.updateUserInfo({
+      name:data.nameInput,
+      about: data.infoInput
+    })
+    .then((res) => {
+      userInfo.updateUserInfo(res.name, res.info);
+    })
     //method setUserInfo(name, info) { this._name.textContent = name; this._info.textContent = info; };
     popupEditWindow.close();
   }
@@ -74,8 +81,8 @@ const popupAddCardWindow = new PopupWithForm({
     //class Section createCard(data) {this.addItem(this._renderer(data)) }}
     api.addCard(data).then(data => {
 
-      loadElements.generateCard(data);
-   })
+      loadElements.createCard(data);
+    })
     popupAddCardWindow.close();
   }
 }

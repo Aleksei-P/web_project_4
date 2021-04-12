@@ -54,10 +54,23 @@ export default class Api {
       .catch((err) => { console.log(err); })
   }
 
-  likeInfo(cardId, isLiked) {
-    if (isLiked) {
 
-    }
+
+  updateUserInfo(name, about){
+    return fetch(`${this._baseUrl}/users/me`, {
+      method: "PATCH",
+      headers: {
+        authorization: this._authToken,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        name,
+        about
+      })
+    })
+      .then(res => res.ok ? res.json() : Promise.reject(`Error: ${res.status}`))
+      .catch((err) => { console.log(err); })
   }
+
 }
 
