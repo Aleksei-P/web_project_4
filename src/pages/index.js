@@ -24,6 +24,8 @@ api.getUserInfo().then(res => {
 
 
 
+
+
   //Forms
 const editFormValidator = new FormValidator(defultConfig, editProfile);
 const addFormValidator = new FormValidator(defultConfig, addCardForm);
@@ -42,7 +44,10 @@ loadElements = new Section({
     const card = new Card(data, ".elements", () => popupImageWindow.open(data),
       (e) => api.deleteCard(data._id).then(() => {
         e.target.closest('.element').remove()
-      }
+      },
+      () => api.addlike(data._id).then(() => {
+
+      })
  ))
     //class Card {constructor(data, cardSelector, handleCardClick, handleDeleteClick)}
     const cardElement = card.generateCard();
@@ -61,10 +66,10 @@ const userInfo = new UserInfo(profileName, profileInfo);
 const popupEditWindow = new PopupWithForm({
   popupSelector: '.modal_edit',
   submitHandler: (data) => {
-    // userInfo.setUserInfo(data.name, data.info);
+    console.log(data.name)
     api.updateUserInfo({
-      name:data.nameInput,
-      about: data.infoInput
+      name: data.name,
+      about: data.info
     })
     .then(() => {
       userInfo.setUserInfo(data.name, data.info);
@@ -73,6 +78,11 @@ const popupEditWindow = new PopupWithForm({
     popupEditWindow.close();
   }
 });
+
+
+// api.getUserInfo().then(res => {
+//   userInfo.setUserInfo(res.name, res.about)
+// })
 
 const popupAddCardWindow = new PopupWithForm({
   popupSelector: '.modal_add',

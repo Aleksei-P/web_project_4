@@ -56,7 +56,7 @@ export default class Api {
 
 
 
-  updateUserInfo(name, about){
+  updateUserInfo({name, about}){
     return fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
       headers: {
@@ -71,6 +71,18 @@ export default class Api {
       .then(res => res.ok ? res.json() : Promise.reject(`Error: ${res.status}`))
       .catch((err) => { console.log(err); })
   }
+
+  addlike() {
+    return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
+      method: "PUT",
+      headers: {
+        authorization: this._authToken,
+        "Content-Type": "application/json"
+      },
+    })
+      .then(res => res.ok ? res.json() : Promise.reject(`Error: ${res.status}`))
+      .catch((err) => { console.log(err); })
+}
 
 }
 
