@@ -45,7 +45,7 @@ loadElements = new Section({
       (e) => api.deleteCard(data._id).then(() => {
         e.target.closest('.element').remove()
       },
-      () => api.addlike(data._id).then(() => {
+      () => api.switchLike(data._id).then(() => { data.likes.push(" ")
 
       })
  ))
