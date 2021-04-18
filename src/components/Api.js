@@ -84,45 +84,6 @@ export default class Api {
       .catch((err) => { console.log(err); })
   }
 
-  /*
-  switchLike({cardId, method}) {
-      return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
-        method: "PUT" ? (method = true) : "DELETE",
-        headers: {
-          authorization: this._authToken,
-          "Content-Type": "application/json"
-        },
-      })
-        .then(res => res.ok ? res.json() : Promise.reject(`Error: ${res.status}`))
-        .catch((err) => { console.log(err); })
-    }
-*/
-/*
-  switchLike(cardId, method) {
-    if (method === true) {
-    return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
-      method: "PUT",
-      headers: {
-        authorization: this._authToken,
-        "Content-Type": "application/json"
-      },
-    })
-      .then(res => res.ok ? res.json() : Promise.reject(`Error: ${res.status}`))
-      .catch((err) => { console.log(err); })
-  }
 
-    else {
-      return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
-        method: "DELETE",
-        headers: {
-          authorization: this._authToken,
-          "Content-Type": "application/json"
-        },
-      })
-        .then(res => res.ok ? res.json() : Promise.reject(`Error: ${res.status}`))
-        .catch((err) => { console.log(err); })
-    }
-}
-*/
 }
 

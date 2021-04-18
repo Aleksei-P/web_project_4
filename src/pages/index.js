@@ -44,15 +44,15 @@ loadElements = new Section({
     const card = new Card(data, ".elements", () => popupImageWindow.open(data),
       (e) => api.deleteCard(data._id).then(() => {
         e.target.closest('.element').remove()
-      },
+      }),
       (likeButton, cardLikes) => {
         const method = likeButton.classList.contains('element__button_like') ? "DELETE" : "PUT";
-      api.switchLike(data._id, method).then( res => {
-        likeButton.classList.toggle('element__button_like');
-        cardLikes.textContent = res.likes.length
+        api.switchLike(data._id, method).then( res => {
+          likeButton.classList.toggle('element__button_like');
+          cardLikes.textContent = res.likes.length
       })
     }
- ))
+ )
     //class Card {constructor(data, cardSelector, handleCardClick, handleDeleteClick)}
     const cardElement = card.generateCard();
     return cardElement;

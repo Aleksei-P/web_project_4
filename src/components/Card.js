@@ -4,6 +4,7 @@ class Card {
     this._link = data.link;
     this._name = data.name;
     this._likes = data.likes;
+    this._cardOwner = data.owner._id;
     this._cardSelector = cardSelector;
     this._handleCardClick = handleCardClick;
     this._handleDeleteClick = handleDeleteClick;
@@ -17,12 +18,17 @@ class Card {
   getLike(){
     return this_likes;
   }
-/*
-  checkLike(LikeOn) {
-    if ()
+
+  _switchLikeButton() {
+    if (this._likes._id === this._cardOwner) {
+      this._cardLikeButton.classList.add(element__button_like);
+    }
+    else {
+      this._cardLikeButton.classList.remove(element__button_like);
+    }
 
   }
-*/
+
   _getCardTemplate() {
     this._cardTemplate = document.querySelector(this._cardSelector).content.querySelector('.element');
     return this._cardTemplate;
@@ -61,7 +67,7 @@ class Card {
     this._card = this._getCardTemplate().cloneNode(true);
     this._cardTitle = this._card.querySelector('.element__title');
     this._cardImage = this._card.querySelector('.element__image');
-    this._cardLikes = this._card.querySelector('.element__button-like-count')
+    this._cardLikes = this._card.querySelector('.element__button-like-count');
     this._cardTitle.textContent = this._name;
     this._cardImage.src = this._link;
     this._cardImage.alt = this._name;
