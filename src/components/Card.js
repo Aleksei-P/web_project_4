@@ -47,9 +47,8 @@ class Card {
       });
 
 
-      this._cardLikeButton.addEventListener('click', (e) => {
-        e.target.classList.toggle('element__button_like');
-        this._handleLikeClick();
+      this._cardLikeButton.addEventListener('click', () => {
+        this._handleLikeClick(this._cardLikeButton, this._cardLikes);
     })
 
     // this._cardLikeButton.addEventListener('click', (e) => {

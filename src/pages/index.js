@@ -19,7 +19,7 @@ import Api from '../components/Api.js';
   })
 
 api.getUserInfo().then(res => {
-  userInfo.setUserInfo(res.name, res.about)
+  userInfo.setUserInfo(res.name, res.about, res.userId)
 })
 
 
@@ -45,9 +45,13 @@ loadElements = new Section({
       (e) => api.deleteCard(data._id).then(() => {
         e.target.closest('.element').remove()
       },
-      () => api.switchLike(data._id).then(() => { data.likes.push(" ")
-
+      (likeButton, cardLikes) => {
+        const method = likeButton.classList.contains('element__button_like') ? "DELETE" : "PUT";
+      api.switchLike(data._id, method).then( res => {
+        likeButton.classList.toggle('element__button_like');
+        cardLikes.textContent = res.likes.length
       })
+    }
  ))
     //class Card {constructor(data, cardSelector, handleCardClick, handleDeleteClick)}
     const cardElement = card.generateCard();
