@@ -45,13 +45,17 @@ loadElements = new Section({
       (e) => api.deleteCard(data._id).then(() => {
         e.target.closest('.element').remove()
       }),
+
       (likeButton, cardLikes) => {
-        api.switchLike(data._id, card.getIsLiked()).then( res => {
+
+        api.switchLike(data._id, card.getIsLiked())
+        .then( res => {
           likeButton.classList.toggle('element__button_like');
           cardLikes.textContent = res.likes.length;
-      })
-    }
- )
+        })
+      }
+      )
+    console.log(api.switchLike.then);
     //class Card {constructor(data, cardSelector, handleCardClick, handleDeleteClick)}
     const cardElement = card.generateCard();
     return cardElement;

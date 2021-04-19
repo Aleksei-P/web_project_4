@@ -34,7 +34,9 @@ class Card {
   }
 
   getIsLiked() {
-    this._likes.find(like => like._id === this._currentUserId);
+    if ( this._likes.find(like => like._id === this._currentUserId))
+    {this._cardLikeButton.classList.add("element__button_like")};
+
   }
 
   _updateVisibleLikes() {
@@ -91,6 +93,7 @@ class Card {
     this._cardLikes.textContent  = this._likes.length;
     this._setEventListeners();
     this._updateVisibleLikes();
+    this.getIsLiked;
     return this._card;
   }
 }
