@@ -19,7 +19,7 @@ import Api from '../components/Api.js';
   })
 
 api.getUserInfo().then(res => {
-  userInfo.setUserInfo(res.name, res.about, res.id)
+  userInfo.setUserInfo(res.name, res.about)
 })
 
 
@@ -55,7 +55,9 @@ loadElements = new Section({
         })
       }
       )
-    console.log(api.switchLike.then);
+    // console.log(api.switchLike.then);
+    console.log(card.getIsLiked());
+
     //class Card {constructor(data, cardSelector, handleCardClick, handleDeleteClick)}
     const cardElement = card.generateCard();
     return cardElement;

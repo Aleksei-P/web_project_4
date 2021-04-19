@@ -24,18 +24,17 @@ class Card {
     return this._currentUserId;
   }
 
-  _switchLikeButton() {
-    if (this._likes._id === this._cardOwner) {
-      this._cardLikeButton.classList.add("element__button_like");
-    }
-    else {
-      this._cardLikeButton.classList.remove("element__button_like");
-    }
-  }
+  // _switchLikeButton() {
+  //   if (this._likes._id === this._cardOwner) {
+  //     this._cardLikeButton.classList.add("element__button_like");
+  //   }
+  //   else {
+  //     this._cardLikeButton.classList.remove("element__button_like");
+  //   }
+  // }
 
   getIsLiked() {
-    if ( this._likes.find(like => like._id === this._currentUserId))
-    {this._cardLikeButton.classList.add("element__button_like")};
+    return this._likes.find(like => like.id === this._currentUserId);
 
   }
 
@@ -43,9 +42,9 @@ class Card {
   if (this.getIsLiked()) {
     this._cardLikeButton.classList.add("element__button_like");
     }
-  // else {
-  //   this._cardLikeButton.classList.remove("element__button_like");
-  // }
+  else {
+    this._cardLikeButton.classList.remove("element__button_like");
+  }
   }
 
   _getCardTemplate() {
@@ -93,9 +92,10 @@ class Card {
     this._cardLikes.textContent  = this._likes.length;
     this._setEventListeners();
     this._updateVisibleLikes();
-    this.getIsLiked;
+    // this.getIsLiked();
     return this._card;
   }
+
 }
 
   export default Card;
