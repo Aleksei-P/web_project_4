@@ -19,7 +19,7 @@ import Api from '../components/Api.js';
   })
 
 api.getUserInfo().then(res => {
-  userInfo.setUserInfo(res.name, res.about, res.userId)
+  userInfo.setUserInfo(res.name, res.about, res.id)
 })
 
 
@@ -41,15 +41,14 @@ api.getCardList().then(cards => {
 loadElements = new Section({
   items: cards,
   renderer: (data) => {
-    const card = new Card(data, ".elements", () => popupImageWindow.open(data),
+    const card = new Card(data, userInfo.getUserInfo().id, ".elements", () => popupImageWindow.open(data),
       (e) => api.deleteCard(data._id).then(() => {
         e.target.closest('.element').remove()
       }),
       (likeButton, cardLikes) => {
-        const method = likeButton.classList.contains('element__button_like') ? "DELETE" : "PUT";
-        api.switchLike(data._id, method).then( res => {
+        api.switchLike(data._id, card.getIsLiked()).then( res => {
           likeButton.classList.toggle('element__button_like');
-          cardLikes.textContent = res.likes.length
+          cardLikes.textContent = res.likes.length;
       })
     }
  )

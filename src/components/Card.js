@@ -1,6 +1,6 @@
 class Card {
-  constructor(data, cardSelector, handleCardClick, handleDeleteClick, handleLikeClick) {
-    this._id = data.id;
+  constructor(data, currentUserId, cardSelector, handleCardClick, handleDeleteClick, handleLikeClick) {
+    this._id = data._id;
     this._link = data.link;
     this._name = data.name;
     this._likes = data.likes;
@@ -9,6 +9,7 @@ class Card {
     this._handleCardClick = handleCardClick;
     this._handleDeleteClick = handleDeleteClick;
     this._handleLikeClick = handleLikeClick;
+    this._currentUserId = currentUserId;
   }
 
   getId(){
@@ -19,14 +20,30 @@ class Card {
     return this_likes;
   }
 
+  getCurrentID() {
+    return this._currentUserId;
+  }
+
   _switchLikeButton() {
     if (this._likes._id === this._cardOwner) {
-      this._cardLikeButton.classList.add(element__button_like);
+      this._cardLikeButton.classList.add("element__button_like");
     }
     else {
-      this._cardLikeButton.classList.remove(element__button_like);
+      this._cardLikeButton.classList.remove("element__button_like");
     }
+  }
 
+  getIsLiked() {
+    this._likes.find(like => like._id === this._currentUserId);
+  }
+
+  _updateVisibleLikes() {
+  if (this.getIsLiked()) {
+    this._cardLikeButton.classList.add("element__button_like");
+    }
+  // else {
+  //   this._cardLikeButton.classList.remove("element__button_like");
+  // }
   }
 
   _getCardTemplate() {
@@ -73,6 +90,7 @@ class Card {
     this._cardImage.alt = this._name;
     this._cardLikes.textContent  = this._likes.length;
     this._setEventListeners();
+    this._updateVisibleLikes();
     return this._card;
   }
 }

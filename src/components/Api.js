@@ -72,9 +72,9 @@ export default class Api {
       .catch((err) => { console.log(err); })
   }
 
-  switchLike( cardId, method ) {
+  switchLike(cardId, method) {
     return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
-      method,
+      method: method ? "PUT" : "DELETE",
       headers: {
         authorization: this._authToken,
         "Content-Type": "application/json"
