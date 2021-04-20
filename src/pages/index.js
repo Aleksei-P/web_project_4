@@ -19,7 +19,7 @@ import Api from '../components/Api.js';
   })
 
 api.getUserInfo().then(res => {
-  userInfo.setUserInfo(res.name, res.about, res.id)
+  userInfo.setUserInfo(res.name, res.about, res._id)
 })
 
 
