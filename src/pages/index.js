@@ -19,11 +19,8 @@ import Api from '../components/Api.js';
   })
 
 api.getUserInfo().then(res => {
-  userInfo.setUserInfo(res.name, res.about)
+  userInfo.setUserInfo(res.name, res.about, res.id)
 })
-
-
-
 
 
   //Forms
@@ -55,8 +52,7 @@ loadElements = new Section({
         })
       }
       )
-    // console.log(api.switchLike.then);
-    console.log(card.getIsLiked());
+      console.log(userInfo.getUserInfo());
 
     //class Card {constructor(data, cardSelector, handleCardClick, handleDeleteClick)}
     const cardElement = card.generateCard();

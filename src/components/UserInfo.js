@@ -10,9 +10,9 @@ getUserInfo() {
   return { name: this._name.textContent, info: this._info.textContent, id: this._id };
 }
 
-  setUserInfo(name, info, userId) {
+  setUserInfo(name, info, id) {
   this._name.textContent = name;
   this._info.textContent = info;
-  this._userId = userId;
+  this._id = id;
 };
 }

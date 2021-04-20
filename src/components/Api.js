@@ -74,7 +74,7 @@ export default class Api {
 
   switchLike(cardId, method) {
     return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
-      method: method ? "PUT" : "DELETE",
+      method: method ? "DELETE" : "PUT",
       headers: {
         authorization: this._authToken,
         "Content-Type": "application/json"

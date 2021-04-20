@@ -20,9 +20,9 @@ class Card {
     return this_likes;
   }
 
-  getCurrentID() {
-    return this._currentUserId;
-  }
+  // getCurrentID() {
+  //   return this._currentUserId;
+  // }
 
   // _switchLikeButton() {
   //   if (this._likes._id === this._cardOwner) {
@@ -34,7 +34,7 @@ class Card {
   // }
 
   getIsLiked() {
-    return this._likes.find(like => like.id === this._currentUserId);
+    return this._likes.find(like => like._id === this._currentUserId);
 
   }
 
