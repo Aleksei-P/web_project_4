@@ -9,7 +9,7 @@ import UserInfo from '../components/UserInfo.js';
 import { defultConfig, modalEdit, modalAdd, addCardForm, editProfile,
   modalImage, popupImage, popupImageTitle, addButton, editButton, closeButton,
   closeAddButton, closePopupImage, saveImage, formAdd, imageNewTitle, imageNewLink,
-  form, list, nameInput, infoInput, profileName, profileInfo} from '../utils/constants.js';
+  form, list, nameInput, infoInput, profileName, profileInfo, editProfilePicture} from '../utils/constants.js';
 import Api from '../components/Api.js';
 
   const api = new Api ({
@@ -19,7 +19,7 @@ import Api from '../components/Api.js';
   })
 
 api.getUserInfo().then(res => {
-  userInfo.setUserInfo(res.name, res.about, res._id)
+  userInfo.setUserInfo(res.name, res.about, res._id, res.avatar)
 })
 
 
@@ -51,8 +51,8 @@ loadElements = new Section({
           cardLikes.textContent = res.likes.length;
         })
       }
-      )
-      console.log(userInfo.getUserInfo());
+    )
+      // console.log(userInfo.getUserInfo());
 
     //class Card {constructor(data, cardSelector, handleCardClick, handleDeleteClick)}
     const cardElement = card.generateCard();
@@ -74,10 +74,11 @@ const popupEditWindow = new PopupWithForm({
     console.log(data.name)
     api.updateUserInfo({
       name: data.name,
-      about: data.info
+      about: data.info,
+      avatar: data.src
     })
     .then(() => {
-      userInfo.setUserInfo(data.name, data.info);
+      userInfo.setUserInfo(data.name, data.info, data.src);
     })
     //method setUserInfo(name, info) { this._name.textContent = name; this._info.textContent = info; };
     popupEditWindow.close();
@@ -103,11 +104,26 @@ const popupAddCardWindow = new PopupWithForm({
 }
 )
 
+const popupEditProfilePicture = new PopupWithForm({
+  popupSelector: '.modal_edit-profile',
+  submitHandler: (data) => {
+    //class Card {constructor(data, cardSelector, handleCardClick)}
+    //class Section createCard(data) {this.addItem(this._renderer(data)) }}
+    api.updateUserPicture({
+      picture: data.avatar
+    })
+    popupEditProfilePicture.close();
+  }
+}
+)
+
 
   popupImageWindow.setEventListeners();
   popupEditWindow.setEventListeners();
   popupAddCardWindow.setEventListeners();
+  popupEditProfilePicture.setEventListeners();
   // // Event Listener for buttons, close listeners in the class Popup.
+  editProfilePicture.addEventListener('click', () => popupEditProfilePicture.open());
   addButton.addEventListener('click', () => popupAddCardWindow.open());
   editButton.addEventListener('click', () => {
     const userParameters = userInfo.getUserInfo();

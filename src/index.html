@@ -13,7 +13,7 @@
   <main>
     <section class="profile">
       <!-- <div class="profile__avatar"> -->
-        <img class="profile__avatar-image" alt="image" src="<%=require('./images/image.jpg')%>">
+        <img class="profile__avatar-image profile__edit-picture" alt="image" src="<%=require('./images/image.jpg')%>">
       <!-- </div> -->
       <div class="profile__info">
         <h1 class="profile__title">Jacques Cousteau</h1>
@@ -66,6 +66,19 @@
             <button class="form__button form__button_disabled" type="submit" disabled>Save</button>
           </form>
         </div>
+    </div>
+
+    <div class="modal modal_edit-profile">
+      <div class="modal__container">
+        <button aria-label="close-modal" type="button" class="modal__button"></button>
+        <form class="form">
+          <h2 class="form__header">Change profile picture</h2>
+          <input id="inputPicture" class="form__input form__input_type_url" type="url" name="link" placeholder="link"
+            value="" minlength="2" required>
+          <span id="inputPicture-error" class="form__error"></span>
+          <button class="form__button form__button_disabled" type="submit" disabled>Save</button>
+        </form>
+      </div>
     </div>
 
     <div class="modal modal_image">

@@ -6,6 +6,7 @@ class PopupWithForm extends Popup {
     this._submitHandler = submitHandler;
     this._editButton = document.querySelector('.profile__edit-button')
     this._modalEdit = document.querySelector('.modal_edit');
+    this._editProfilePicture = document.querySelector('.profile__edit-picture');
 
   }
 

@@ -47,6 +47,12 @@ class Card {
   }
   }
 
+  _updateVisibleDelete() {
+    if (this._cardOwner !== this._currentUserId) {
+      this._cardDelete.remove()
+    }
+  }
+
   _getCardTemplate() {
     this._cardTemplate = document.querySelector(this._cardSelector).content.querySelector('.element');
     return this._cardTemplate;
@@ -92,6 +98,7 @@ class Card {
     this._cardLikes.textContent  = this._likes.length;
     this._setEventListeners();
     this._updateVisibleLikes();
+    this._updateVisibleDelete();
     // this.getIsLiked();
     return this._card;
   }

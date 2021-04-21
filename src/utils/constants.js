@@ -28,6 +28,7 @@ export const closeButton = document.querySelector('.modal__button');
 export const closeAddButton = modalAdd.querySelector('.modal__button');
 export const closePopupImage = modalImage.querySelector('.modal__button');
 export const saveImage = modalAdd.querySelector('.form__button');
+export const editProfilePicture = document.querySelector('.profile__edit-picture');
 
 
 //add new image

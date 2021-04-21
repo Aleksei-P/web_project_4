@@ -85,5 +85,20 @@ export default class Api {
   }
 
 
+  updateUserPicture (picture) {
+    return fetch(`${this._baseUrl}/users/me/avatar`, {
+      method: "PATCH",
+      headers: {
+        authorization: this._authToken,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        picture
+      })
+    })
+      .then(res => res.ok ? res.json() : Promise.reject(`Error: ${res.status}`))
+      .catch((err) => { console.log(err); })
+  }
+
 }
 

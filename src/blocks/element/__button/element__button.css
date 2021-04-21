@@ -14,9 +14,9 @@
 }
 
 .element__button-like-count {
-   font-style: normal;
-  font-weight: 900;
-  font-size: 10px;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 13px;
   line-height: 16px;
   margin: 0px;
   color: #000000;
