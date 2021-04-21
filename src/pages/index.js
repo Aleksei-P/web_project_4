@@ -76,7 +76,7 @@ const popupEditWindow = new PopupWithForm({
       about: data.info,
    })
     .then(() => {
-      userInfo.setUserInfo(data.name, data.info, data.avatar);
+      userInfo.setUserInfo(data.name, data.info);
     })
     //method setUserInfo(name, info) { this._name.textContent = name; this._info.textContent = info; };
     popupEditWindow.close();
@@ -101,6 +101,9 @@ const popupEditProfilePicture = new PopupWithForm({
     api.updateUserPicture({
       picture: data.avatar
     })
+      .then(() => {
+        userInfo.setUserInfo(data.avatar);
+      })
     popupEditProfilePicture.close();
   }
 }
