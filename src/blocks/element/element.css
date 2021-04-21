@@ -3,6 +3,7 @@
 @import url(./__info/element__info.css);
 @import url(./__button/element__button.css);
 @import url(./__delete/element__delete.css);
+@import url(./__element__likepack/element__likepack.css);
 
 .element {
   width: 100%;

@@ -1,0 +1,4 @@
+  .element__likepack {
+  display: flex;
+  flex-direction: column;
+  }

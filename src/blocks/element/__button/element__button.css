@@ -1,5 +1,6 @@
 .element__button {
   width: 20.76px;
+  height: 20px;
   background-image: url(../../../images/element-button.svg);
   background-size: 100%;
   background-repeat: no-repeat;
@@ -23,4 +24,5 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  text-align: center;
 }

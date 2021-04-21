@@ -17,11 +17,18 @@ import Api from '../components/Api.js';
     authToken: "97a4c738-0732-47f2-a8a7-8e015422339a",
     "Content-Type": "application/json"
   })
-
 api.getUserInfo().then(res => {
   userInfo.setUserInfo(res.name, res.about, res._id, res.avatar)
 })
 
+function loadingTextButton(isLoading, modal){
+  if (isLoading) {
+    modal.querySelector('.form__button').textContent = "Saving...";
+  }
+  else {
+    modal.querySelector('.form__button').textContent = "Save";
+  }
+}
 
   //Forms
 const editFormValidator = new FormValidator(defultConfig, editProfile);
@@ -71,12 +78,16 @@ const userInfo = new UserInfo(profileName, profileInfo);
 const popupEditWindow = new PopupWithForm({
   popupSelector: '.modal_edit',
   submitHandler: (data) => {
+    loadingTextButton(true, editProfile);
     api.updateUserInfo({
       name: data.name,
       about: data.info,
    })
     .then(() => {
       userInfo.setUserInfo(data.name, data.info);
+    })
+    .finally(() => {
+      loadingTextButton(false, editProfile);
     })
     //method setUserInfo(name, info) { this._name.textContent = name; this._info.textContent = info; };
     popupEditWindow.close();
@@ -101,14 +112,13 @@ const popupEditProfilePicture = new PopupWithForm({
     api.updateUserPicture({
       picture: data.avatar
     })
-      .then(() => {
-        userInfo.setUserInfo(data.avatar);
-      })
+    .then(() => {
+      userInfo.setUserInfo(data.name, data.info, data._id, data.avatar);
+    })
     popupEditProfilePicture.close();
   }
 }
 )
-
 
   popupImageWindow.setEventListeners();
   popupEditWindow.setEventListeners();
