@@ -71,30 +71,21 @@ const userInfo = new UserInfo(profileName, profileInfo);
 const popupEditWindow = new PopupWithForm({
   popupSelector: '.modal_edit',
   submitHandler: (data) => {
-    console.log(data.name)
     api.updateUserInfo({
       name: data.name,
       about: data.info,
-      avatar: data.src
-    })
+   })
     .then(() => {
-      userInfo.setUserInfo(data.name, data.info, data.src);
+      userInfo.setUserInfo(data.name, data.info, data.avatar);
     })
     //method setUserInfo(name, info) { this._name.textContent = name; this._info.textContent = info; };
     popupEditWindow.close();
   }
 });
 
-
-// api.getUserInfo().then(res => {
-//   userInfo.setUserInfo(res.name, res.about)
-// })
-
 const popupAddCardWindow = new PopupWithForm({
   popupSelector: '.modal_add',
   submitHandler: (data) => {
-    //class Card {constructor(data, cardSelector, handleCardClick)}
-    //class Section createCard(data) {this.addItem(this._renderer(data)) }}
     api.addCard(data).then(data => {
 
       loadElements.createCard(data);
@@ -107,8 +98,6 @@ const popupAddCardWindow = new PopupWithForm({
 const popupEditProfilePicture = new PopupWithForm({
   popupSelector: '.modal_edit-profile',
   submitHandler: (data) => {
-    //class Card {constructor(data, cardSelector, handleCardClick)}
-    //class Section createCard(data) {this.addItem(this._renderer(data)) }}
     api.updateUserPicture({
       picture: data.avatar
     })
