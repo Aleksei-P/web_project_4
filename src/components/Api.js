@@ -85,7 +85,7 @@ export default class Api {
   }
 
 
-  updateUserPicture (picture) {
+  updateUserPicture (avatar) {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: "PATCH",
       headers: {
@@ -93,7 +93,7 @@ export default class Api {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        picture
+        avatar
       })
     })
       .then(res => res.ok ? res.json() : Promise.reject(`Error: ${res.status}`))

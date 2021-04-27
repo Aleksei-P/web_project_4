@@ -110,12 +110,12 @@ const popupEditProfilePicture = new PopupWithForm({
   popupSelector: '.modal_edit-profile',
   submitHandler: (data) => {
     api.updateUserPicture({
-      picture: data.avatar
+      avatar: data.avatar
     })
     .then((res) => {
       console.log("avatar", data);
-      userInfo.setUserAvatar(data.avatar);
-      // editProfilePicture = res.avatar;
+      userInfo.setUserAvatar(editProfilePicture.src);
+      // editProfilePicture.src = res.avatar;
     })
     popupEditProfilePicture.close();
   }
