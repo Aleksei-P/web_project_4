@@ -18,7 +18,7 @@ import Api from '../components/Api.js';
     "Content-Type": "application/json"
   })
 api.getUserInfo().then(res => {
-  userInfo.setUserInfo(res.name, res.about, res._id, res.avatar)
+  userInfo.setUserInfo(res.name, res.about, res.avatar, res._id)
 })
 
 function loadingTextButton(isLoading, modal){
@@ -73,7 +73,7 @@ loadElements = new Section({
 );
 
 
-const userInfo = new UserInfo(profileName, profileInfo);
+const userInfo = new UserInfo(profileName, profileInfo, editProfilePicture);
 
 const popupEditWindow = new PopupWithForm({
   popupSelector: '.modal_edit',
@@ -82,9 +82,9 @@ const popupEditWindow = new PopupWithForm({
     api.updateUserInfo({
       name: data.name,
       about: data.info,
-   })
+    })
     .then(() => {
-      userInfo.setUserInfo(data.name, data.info);
+      userInfo.setUserInfo(data.name, data.info, data.avatar);
     })
     .finally(() => {
       loadingTextButton(false, editProfile);
@@ -112,8 +112,10 @@ const popupEditProfilePicture = new PopupWithForm({
     api.updateUserPicture({
       picture: data.avatar
     })
-    .then(() => {
-      userInfo.setUserInfo(data.name, data.info, data._id, data.avatar);
+    .then((res) => {
+      console.log("avatar", data);
+      userInfo.setUserAvatar(data.avatar);
+      // editProfilePicture = res.avatar;
     })
     popupEditProfilePicture.close();
   }
