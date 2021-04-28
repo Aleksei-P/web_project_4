@@ -113,9 +113,8 @@ const popupEditProfilePicture = new PopupWithForm({
       avatar: data.avatar
     })
     .then((res) => {
-      console.log("avatar", data);
-      userInfo.setUserAvatar(editProfilePicture.src);
-      // editProfilePicture.src = res.avatar;
+      console.log("avatar", res);
+      userInfo.setUserAvatar(res.avatar);
     })
     popupEditProfilePicture.close();
   }

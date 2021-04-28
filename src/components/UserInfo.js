@@ -18,7 +18,7 @@ getUserInfo() {
   this._avatar = avatar;
 };
   setUserAvatar(avatar) {
-    this._avatar = avatar;
+    this._avatar.src = avatar;
   }
 
 }

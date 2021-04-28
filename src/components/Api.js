@@ -92,9 +92,9 @@ export default class Api {
         authorization: this._authToken,
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({
+      body: JSON.stringify(
         avatar
-      })
+      )
     })
       .then(res => res.ok ? res.json() : Promise.reject(`Error: ${res.status}`))
       .catch((err) => { console.log(err); })
