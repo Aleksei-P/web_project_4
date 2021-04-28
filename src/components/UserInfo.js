@@ -15,7 +15,7 @@ getUserInfo() {
   this._name.textContent = name;
   this._info.textContent = info;
   this._id = id;
-  this._avatar = avatar;
+  this._avatar.src = avatar;
 };
   setUserAvatar(avatar) {
     this._avatar.src = avatar;
