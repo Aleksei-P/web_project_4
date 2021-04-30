@@ -30,7 +30,7 @@ export const closeAddButton = modalAdd.querySelector('.modal__button');
 export const closePopupImage = modalImage.querySelector('.modal__button');
 export const saveImage = modalAdd.querySelector('.form__button');
 export const editProfilePicture = document.querySelector('.profile__edit-picture');
-
+export const cardDeleteButton = document.querySelector('.element__delete');
 
 //add new image
 export const formAdd = modalAdd.querySelector('.form');

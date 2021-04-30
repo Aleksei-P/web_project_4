@@ -6,7 +6,8 @@ import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import Section from '../components/Section.js';
 import UserInfo from '../components/UserInfo.js';
-import { defultConfig, modalEdit, modalAdd, addCardForm, editProfile,
+import {
+  defultConfig, modalEdit, modalAdd, addCardForm, editProfile, cardDeleteButton,
   modalImage, popupImage, popupImageTitle, addButton, editButton, closeButton,
   closeAddButton, closePopupImage, saveImage, formAdd, imageNewTitle, imageNewLink,
   form, list, nameInput, infoInput, profileName, profileInfo, editProfilePicture, saveAvatar} from '../utils/constants.js';
@@ -41,6 +42,7 @@ saveAvatarFormValidator.enableValidation();
 
 //Popup Image
 const popupImageWindow = new PopupWithImage('.modal_image');
+let confirmDelete;
 
 let loadElements;
 api.getCardList().then(cards => {
@@ -48,9 +50,21 @@ loadElements = new Section({
   items: cards,
   renderer: (data) => {
     const card = new Card(data, userInfo.getUserInfo().id, ".elements", () => popupImageWindow.open(data),
-      (e) => api.deleteCard(data._id).then(() => {
+      /*(e) => api.deleteCard(data._id).then(() => {
         e.target.closest('.element').remove()
-      }),
+      })
+      */
+      confirmDelete = new PopupWithForm({
+       popupSelector: '.modal_deleted',
+       submitHandler: (data) => {
+         (e) => api.deleteCard(data._id)
+           .then(() => {
+             e.target.closest('.element').remove()
+           }),
+
+           confirmDelete.close();
+       }
+     }),
 
       (likeButton, cardLikes) => {
         console.log("like", card.getIsLiked())
@@ -83,8 +97,8 @@ const popupEditWindow = new PopupWithForm({
       name: data.name,
       about: data.info,
     })
-    .then(() => {
-      userInfo.setUserInfo(data.name, data.info, data.avatar);
+    .then((res) => {
+      userInfo.setUserInfo(data.name, data.info, res.avatar);
     })
     .finally(() => {
       loadingTextButton(false, editProfile);
@@ -108,6 +122,8 @@ const popupAddCardWindow = new PopupWithForm({
   }
 });
 
+
+
 const popupEditProfilePicture = new PopupWithForm({
   popupSelector: '.modal_edit-profile',
   submitHandler: (data) => {
@@ -127,7 +143,7 @@ const popupEditProfilePicture = new PopupWithForm({
   }
 }
 )
-
+  confirmDelete.setEventListeners();
   popupImageWindow.setEventListeners();
   popupEditWindow.setEventListeners();
   popupAddCardWindow.setEventListeners();
@@ -135,6 +151,9 @@ const popupEditProfilePicture = new PopupWithForm({
   // // Event Listener for buttons, close listeners in the class Popup.
   editProfilePicture.addEventListener('click', () => popupEditProfilePicture.open());
   addButton.addEventListener('click', () => popupAddCardWindow.open());
+  cardDeleteButton.addEventListener('click', () => confirmDelete.open());
+
+
   editButton.addEventListener('click', () => {
     const userParameters = userInfo.getUserInfo();
     nameInput.value = userParameters.name;
