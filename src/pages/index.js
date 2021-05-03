@@ -42,7 +42,6 @@ saveAvatarFormValidator.enableValidation();
 
 //Popup Image
 const popupImageWindow = new PopupWithImage('.modal_image');
-let confirmDelete;
 
 let loadElements;
 api.getCardList().then(cards => {
@@ -55,19 +54,7 @@ loadElements = new Section({
         e.target.closest('.element').remove()
       })
       */
-     confirmDelete = new PopupWithForm({
-       popupSelector: '.modal_delete',
-       submitHandler: (data) => {
-         (e) => api.deleteCard(data._id)
-         .then(() => {
-           e.target.closest('.element').remove()
-          }),
-
-          confirmDelete.setEventListeners();
-          //  cardDeleteButton.addEventListener('click', () => confirmDelete.open());
-          confirmDelete.close();
-        }
-      }),
+      () => confirmDelete.open(data),
 
 
       (likeButton, cardLikes) => {
@@ -147,7 +134,20 @@ const popupEditProfilePicture = new PopupWithForm({
   }
 }
 )
+
+const confirmDelete = new PopupWithForm({
+  popupSelector: '.modal_delete',
+  submitHandler: (data) => {
+    (e) => api.deleteCard(data._id)
+      .then(() => {
+        e.target.closest('.element').remove()
+      }),
+      confirmDelete.close();
+    }
+  })
+
   // confirmDelete.setEventListeners();
+  confirmDelete.setEventListeners();
   popupImageWindow.setEventListeners();
   popupEditWindow.setEventListeners();
   popupAddCardWindow.setEventListeners();
