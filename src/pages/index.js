@@ -49,22 +49,26 @@ api.getCardList().then(cards => {
 loadElements = new Section({
   items: cards,
   renderer: (data) => {
+    console.log("data", confirmDelete);
     const card = new Card(data, userInfo.getUserInfo().id, ".elements", () => popupImageWindow.open(data),
       /*(e) => api.deleteCard(data._id).then(() => {
         e.target.closest('.element').remove()
       })
       */
-      confirmDelete = new PopupWithForm({
-       popupSelector: '.modal_deleted',
+     confirmDelete = new PopupWithForm({
+       popupSelector: '.modal_delete',
        submitHandler: (data) => {
          (e) => api.deleteCard(data._id)
-           .then(() => {
-             e.target.closest('.element').remove()
-           }),
+         .then(() => {
+           e.target.closest('.element').remove()
+          }),
 
-           confirmDelete.close();
-       }
-     }),
+          confirmDelete.setEventListeners();
+          //  cardDeleteButton.addEventListener('click', () => confirmDelete.open());
+          confirmDelete.close();
+        }
+      }),
+
 
       (likeButton, cardLikes) => {
         console.log("like", card.getIsLiked())
@@ -75,15 +79,15 @@ loadElements = new Section({
           card._likes = res.likes
         })
       }
-    )
-    const cardElement = card.generateCard();
-    return cardElement;
-  }
-},
-"elements"
-);
+      )
+      const cardElement = card.generateCard();
+      return cardElement;
+    }
+  },
+  "elements"
+  );
   loadElements.render(cards);
-  }
+}
 );
 
 
@@ -143,7 +147,7 @@ const popupEditProfilePicture = new PopupWithForm({
   }
 }
 )
-  confirmDelete.setEventListeners();
+  // confirmDelete.setEventListeners();
   popupImageWindow.setEventListeners();
   popupEditWindow.setEventListeners();
   popupAddCardWindow.setEventListeners();
@@ -151,7 +155,7 @@ const popupEditProfilePicture = new PopupWithForm({
   // // Event Listener for buttons, close listeners in the class Popup.
   editProfilePicture.addEventListener('click', () => popupEditProfilePicture.open());
   addButton.addEventListener('click', () => popupAddCardWindow.open());
-  cardDeleteButton.addEventListener('click', () => confirmDelete.open());
+  // cardDeleteButton.addEventListener('click', () => confirmDelete.open());
 
 
   editButton.addEventListener('click', () => {
