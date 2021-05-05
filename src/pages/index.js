@@ -48,18 +48,16 @@ api.getCardList().then(cards => {
 loadElements = new Section({
   items: cards,
   renderer: (data) => {
-    console.log("data", confirmDelete);
     const card = new Card(data, userInfo.getUserInfo().id, ".elements", () => popupImageWindow.open(data),
       /*(e) => api.deleteCard(data._id).then(() => {
         e.target.closest('.element').remove()
       })
       */
-      () => confirmDelete.open(data),
+      (e) => confirmDelete.open(e, data),
 
 
       (likeButton, cardLikes) => {
-        console.log("like", card.getIsLiked())
-        api.switchLike(data._id, card.getIsLiked())
+         api.switchLike(data._id, card.getIsLiked())
         .then( res => {
           likeButton.classList.toggle('element__button_like');
           cardLikes.textContent = res.likes.length;
@@ -123,7 +121,6 @@ const popupEditProfilePicture = new PopupWithForm({
       avatar: data.avatar
     })
     .then((res) => {
-      console.log("avatar", res.avatar);
       userInfo.setUserAvatar(res.avatar);
     })
     .finally(() => {
@@ -138,7 +135,7 @@ const popupEditProfilePicture = new PopupWithForm({
 const confirmDelete = new PopupWithForm({
   popupSelector: '.modal_delete',
   submitHandler: (data) => {
-    (e) => api.deleteCard(data._id)
+    api.deleteCard(data._id)
       .then(() => {
         e.target.closest('.element').remove()
       }),
