@@ -59,7 +59,7 @@ loadElements = new Section({
         confirmDelete.submitAction(() => {
          api.deleteCard(data)
         .then(() => {
-          card.deleteCard();
+          card.remove(".element");
       }),
       confirmDelete.close();
     })},

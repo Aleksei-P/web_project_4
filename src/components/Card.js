@@ -103,11 +103,6 @@ class Card {
     return this._card;
   }
 
-  deleteCard() {
-    this._cardTemplate = document.querySelector(this._cardSelector).content.querySelector('.element');
-    this._cardTemplate.remove('.element');
-  }
-
 }
 
   export default Card;
