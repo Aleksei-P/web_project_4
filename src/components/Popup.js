@@ -4,9 +4,7 @@
          this._popupElement = document.querySelector(popupSelector);
          this._handleEscClose = this._handleEscClose.bind(this);
      }
-     open(e, data) {
-       this.e = e;
-       this.data = data
+     open() {
        this._popupElement.classList.add('modal_open');
        document.addEventListener('keyup', this._handleEscClose);
      }

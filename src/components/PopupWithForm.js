@@ -32,6 +32,10 @@ class PopupWithForm extends Popup {
     super.close();
     this._popupElement.querySelector('.form').reset();
   }
+
+  submitAction(del) {
+    this._submitHandler = del;
+  }
 }
 
 export default PopupWithForm;

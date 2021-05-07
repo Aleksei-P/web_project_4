@@ -69,7 +69,7 @@ class Card {
     // });
 
     this._cardDelete.addEventListener('click', (e) => {
-      this._handleDeleteClick(e);
+      this._handleDeleteClick(this._id);
     });
 
     this._cardImage.addEventListener('click', () => {
@@ -101,6 +101,11 @@ class Card {
     this._updateVisibleDelete();
     // this.getIsLiked();
     return this._card;
+  }
+
+  deleteCard() {
+    this._cardTemplate = document.querySelector(this._cardSelector).content.querySelector('.element');
+    this._cardTemplate.remove('.element');
   }
 
 }

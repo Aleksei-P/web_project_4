@@ -53,8 +53,16 @@ loadElements = new Section({
         e.target.closest('.element').remove()
       })
       */
-      (e) => confirmDelete.open(e, data),
 
+     (data) => { confirmDelete.open(data);
+          console.log("data del", data);
+        confirmDelete.submitAction(() => {
+         api.deleteCard(data)
+        .then(() => {
+          card.deleteCard();
+      }),
+      confirmDelete.close();
+    })},
 
       (likeButton, cardLikes) => {
          api.switchLike(data._id, card.getIsLiked())
@@ -81,6 +89,7 @@ const userInfo = new UserInfo(profileName, profileInfo, editProfilePicture);
 const popupEditWindow = new PopupWithForm({
   popupSelector: '.modal_edit',
   submitHandler: (data) => {
+    console.log("data edit", data);
     loadingTextButton(true, editProfile);
     api.updateUserInfo({
       name: data.name,
@@ -132,16 +141,26 @@ const popupEditProfilePicture = new PopupWithForm({
 }
 )
 
+// const confirmDelete = new PopupWithForm({
+//   popupSelector: '.modal_delete',
+//   submitHandler: (data) => {
+//     console.log("data del", data);
+//     api.deleteCard(data._id)
+//       .then((e) => {
+//         e.target.closest('.element').remove()
+//       }),
+//       confirmDelete.close();
+//     }
+//   })
+
 const confirmDelete = new PopupWithForm({
   popupSelector: '.modal_delete',
-  submitHandler: (data) => {
-    api.deleteCard(data._id)
-      .then(() => {
-        e.target.closest('.element').remove()
-      }),
-      confirmDelete.close();
     }
-  })
+)
+
+  // confirmDelete.submitHandler((data) => api.deleteCard(data._id) .then((e) => {
+  //   e.target.closest('.element').remove();
+  // }))
 
   // confirmDelete.setEventListeners();
   confirmDelete.setEventListeners();
