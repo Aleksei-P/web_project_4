@@ -54,12 +54,12 @@ loadElements = new Section({
       })
       */
 
-     (data) => { confirmDelete.open(data);
+     (e) => { confirmDelete.open(data);
           console.log("data del", data);
         confirmDelete.submitAction(() => {
          api.deleteCard(data)
-           .then((e) => {
-          e.target;
+           .then(() => {
+             e.target.closest('.element').remove();
       }),
       confirmDelete.close();
     })},

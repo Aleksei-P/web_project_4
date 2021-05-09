@@ -69,7 +69,7 @@ class Card {
     // });
 
     this._cardDelete.addEventListener('click', (e) => {
-      this._handleDeleteClick(this._id);
+      this._handleDeleteClick(e);
     });
 
     this._cardImage.addEventListener('click', () => {
