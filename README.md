@@ -6,5 +6,6 @@ ____
 * Adaptive web design.
 * "Edit profile" Popup Box.
 * Opening and Closing the Popup Box.
-* JavaScripy in Popup Box.
+* JavaScript in Popup Box.
+* Using APIs (loading information from the server, updating information)
 ____
