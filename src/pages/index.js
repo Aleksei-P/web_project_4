@@ -57,7 +57,7 @@ loadElements = new Section({
      (e) => { confirmDelete.open(data);
           console.log("data del", data);
         confirmDelete.submitAction(() => {
-         api.deleteCard(data)
+         api.deleteCard(data._id)
            .then(() => {
              e.target.closest('.element').remove();
       }),
@@ -82,7 +82,6 @@ loadElements = new Section({
   loadElements.render(cards);
 }
 );
-
 
 const userInfo = new UserInfo(profileName, profileInfo, editProfilePicture);
 
@@ -120,8 +119,6 @@ const popupAddCardWindow = new PopupWithForm({
   }
 });
 
-
-
 const popupEditProfilePicture = new PopupWithForm({
   popupSelector: '.modal_edit-profile',
   submitHandler: (data) => {
@@ -135,34 +132,16 @@ const popupEditProfilePicture = new PopupWithForm({
     .finally(() => {
       loadingTextButton(false, saveAvatar);
       })
-
     popupEditProfilePicture.close();
   }
 }
 )
-
-// const confirmDelete = new PopupWithForm({
-//   popupSelector: '.modal_delete',
-//   submitHandler: (data) => {
-//     console.log("data del", data);
-//     api.deleteCard(data._id)
-//       .then((e) => {
-//         e.target.closest('.element').remove()
-//       }),
-//       confirmDelete.close();
-//     }
-//   })
 
 const confirmDelete = new PopupWithForm({
   popupSelector: '.modal_delete',
     }
 )
 
-  // confirmDelete.submitHandler((data) => api.deleteCard(data._id) .then((e) => {
-  //   e.target.closest('.element').remove();
-  // }))
-
-  // confirmDelete.setEventListeners();
   confirmDelete.setEventListeners();
   popupImageWindow.setEventListeners();
   popupEditWindow.setEventListeners();
@@ -171,9 +150,6 @@ const confirmDelete = new PopupWithForm({
   // // Event Listener for buttons, close listeners in the class Popup.
   editProfilePicture.addEventListener('click', () => popupEditProfilePicture.open());
   addButton.addEventListener('click', () => popupAddCardWindow.open());
-  // cardDeleteButton.addEventListener('click', () => confirmDelete.open());
-
-
   editButton.addEventListener('click', () => {
     const userParameters = userInfo.getUserInfo();
     nameInput.value = userParameters.name;

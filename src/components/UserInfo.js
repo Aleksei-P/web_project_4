@@ -6,7 +6,6 @@ export default class UserInfo {
     this._avatar = avatar
   }
 
-
 getUserInfo() {
   return { name: this._name.textContent, info: this._info.textContent, id: this._id, avatar: this._avatar};
 }
@@ -17,8 +16,8 @@ getUserInfo() {
   this._id = id;
   this._avatar.src = avatar;
 };
+
   setUserAvatar(avatar) {
     this._avatar.src = avatar;
   }
-
 }

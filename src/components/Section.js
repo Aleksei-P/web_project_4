@@ -9,7 +9,6 @@ export default class Section {
     this._cardContainer.prepend(element);
   }
 
-
 render() {
   this._items.forEach((item) => {
     this.addItem(this._renderer(item))

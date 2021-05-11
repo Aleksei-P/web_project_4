@@ -1,0 +1,21 @@
+.profile__avatar-image-cursor {
+    /* visibility: hidden; */
+    opacity: 0;
+    position:absolute;
+    top: 47px;
+    left: 47px;
+    pointer-events: none;
+ }
+
+ .profile__avatar-image-cursor:hover {
+    /* visibility:visible; */
+    opacity: 1;
+    transition: .5s;
+ }
+
+ @media screen and (max-width: 520px) {
+	.profile__avatar-image-cursor {
+    top: 47px;
+    left: calc(282px/2 - 13px);
+	}
+}

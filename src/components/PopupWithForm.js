@@ -32,7 +32,7 @@ class PopupWithForm extends Popup {
     super.close();
     this._popupElement.querySelector('.form').reset();
   }
-
+  //remove card
   submitAction(del) {
     this._submitHandler = del;
   }
