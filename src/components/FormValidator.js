@@ -66,7 +66,7 @@ _setEventListeners() {
     this._inputs.forEach((input) => {
       this._hideErrorMessage(input)
       this._toggleButtomState(this._inputs, this._button);
-    })
+     })
   });
 }
 

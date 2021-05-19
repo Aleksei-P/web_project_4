@@ -18,16 +18,21 @@ import Api from '../components/Api.js';
     authToken: "97a4c738-0732-47f2-a8a7-8e015422339a",
     "Content-Type": "application/json"
   })
-api.getUserInfo().then(res => {
-  userInfo.setUserInfo(res.name, res.about, res.avatar, res._id)
-})
 
-function loadingTextButton(isLoading, modal){
+// api.getAllUserInfo().then(([getCardList, getUserInfo ]) => {
+//   userInfo.setUserInfo(getUserInfo.name, getUserInfo.about, getUserInfo.avatar, getUserInfo._id);
+// })
+// api.getUserInfo().then(res => {
+//   userInfo.setUserInfo(res.name, res.about, res.avatar, res._id)
+// })
+
+
+function setLoadingButtonText(isLoading, modal, loadingText = "Saving...", defaultText = "Save"){
   if (isLoading) {
-    modal.querySelector('.form__button').textContent = "Saving...";
+    modal.querySelector('.form__button').textContent = loadingText;
   }
   else {
-    modal.querySelector('.form__button').textContent = "Save";
+    modal.querySelector('.form__button').textContent = defaultText;
   }
 }
 
@@ -44,32 +49,34 @@ saveAvatarFormValidator.enableValidation();
 const popupImageWindow = new PopupWithImage('.modal_image');
 
 let loadElements;
-api.getCardList().then(cards => {
-loadElements = new Section({
+
+Promise.all([api.getUserInfo(), api.getCardList()]).then(([res, cards]) => {
+  userInfo.setUserInfo(res.name, res.about, res.avatar, res._id);
+  console.log(cards);
+
+    loadElements = new Section({
   items: cards,
   renderer: (data) => {
     const card = new Card(data, userInfo.getUserInfo().id, ".elements", () => popupImageWindow.open(data),
-      /*(e) => api.deleteCard(data._id).then(() => {
+    /*(e) => api.deleteCard(data._id).then(() => {
         e.target.closest('.element').remove()
       })
       */
-
      (e) => { confirmDelete.open(data);
-          console.log("data del", data);
+      console.log("data del", data);
         confirmDelete.submitAction(() => {
          api.deleteCard(data._id)
-           .then(() => {
+         .then(() => {
              e.target.closest('.element').remove();
-      }),
-      confirmDelete.close();
+             confirmDelete.close();
+            })
+             .catch(err => console.log(err));
     })},
 
-      (likeButton, cardLikes) => {
-         api.switchLike(data._id, card.getIsLiked())
+      () => {
+        api.switchLike(data._id, card.getIsLiked())
         .then( res => {
-          likeButton.classList.toggle('element__button_like');
-          cardLikes.textContent = res.likes.length;
-          card._likes = res.likes
+          card.updateLikes(res)
         })
       }
       )
@@ -80,8 +87,7 @@ loadElements = new Section({
   "elements"
   );
   loadElements.render(cards);
-}
-);
+});
 
 const userInfo = new UserInfo(profileName, profileInfo, editProfilePicture);
 
@@ -89,50 +95,53 @@ const popupEditWindow = new PopupWithForm({
   popupSelector: '.modal_edit',
   submitHandler: (data) => {
     console.log("data edit", data);
-    loadingTextButton(true, editProfile);
+    setLoadingButtonText(true, editProfile);
     api.updateUserInfo({
       name: data.name,
       about: data.info,
     })
     .then((res) => {
       userInfo.setUserInfo(data.name, data.info, res.avatar);
+      popupEditWindow.close();
     })
     .finally(() => {
-      loadingTextButton(false, editProfile);
+      setLoadingButtonText(false, editProfile);
     })
-     popupEditWindow.close();
+    .catch(err => console.log(err))
   }
 });
 
 const popupAddCardWindow = new PopupWithForm({
   popupSelector: '.modal_add',
   submitHandler: (data) => {
-    loadingTextButton(true, addCardForm);
+    setLoadingButtonText(true, addCardForm);
     api.addCard(data)
     .then(data => {
       loadElements.createCard(data);
+      popupAddCardWindow.close();
     })
       .finally(() => {
-        loadingTextButton(false, addCardForm);
+        setLoadingButtonText(false, addCardForm);
       })
-    popupAddCardWindow.close();
+      .catch(err => console.log(err))
   }
 });
 
 const popupEditProfilePicture = new PopupWithForm({
   popupSelector: '.modal_edit-profile',
   submitHandler: (data) => {
-    loadingTextButton(true, saveAvatar);
+    setLoadingButtonText(true, saveAvatar);
     api.updateUserPicture({
       avatar: data.avatar
     })
     .then((res) => {
       userInfo.setUserAvatar(res.avatar);
+       popupEditProfilePicture.close();
     })
     .finally(() => {
-      loadingTextButton(false, saveAvatar);
+      setLoadingButtonText(false, saveAvatar);
       })
-    popupEditProfilePicture.close();
+      .catch(err => console.log(err))
   }
 }
 )

@@ -4,10 +4,6 @@ class PopupWithForm extends Popup {
   constructor({ popupSelector, submitHandler }) {
     super(popupSelector);
     this._submitHandler = submitHandler;
-    this._editButton = document.querySelector('.profile__edit-button')
-    this._modalEdit = document.querySelector('.modal_edit');
-    this._editProfilePicture = document.querySelector('.profile__edit-picture');
-
   }
 
   _getInputValues() {
@@ -33,8 +29,8 @@ class PopupWithForm extends Popup {
     this._popupElement.querySelector('.form').reset();
   }
   //remove card
-  submitAction(del) {
-    this._submitHandler = del;
+  submitAction(action) {
+    this._submitHandler = action;
   }
 }
 

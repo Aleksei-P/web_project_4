@@ -94,11 +94,17 @@ export default class Api {
       },
       body: JSON.stringify(
         avatar
-      )
-    })
-      .then(res => res.ok ? res.json() : Promise.reject(`Error: ${res.status}`))
-      .catch((err) => { console.log(err); })
-  }
+        )
+      })
+      .then (this._checkResponse())
+    }
 
-}
+
+    _checkResponse(res) {
+      console.log(res)
+      res ? res.json() : Promise.reject(`Error: ${res.status}`)
+
+    }
+
+  }
 
