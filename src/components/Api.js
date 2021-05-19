@@ -102,7 +102,7 @@ export default class Api {
 
     _checkResponse(res) {
       console.log(res)
-      res ? res.json() : Promise.reject(`Error: ${res.status}`)
+      res.ok ? res.json() : Promise.reject(`Error: ${res.status}`)
 
     }
 
