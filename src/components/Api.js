@@ -10,9 +10,7 @@ export default class Api {
         authorization: this._authToken
       }
     })
-
-      .then(res => res.ok ? res.json() : Promise.reject(`Error: ${res.status}`))
-      .catch((err) => { console.log(err); })
+      .then(this._checkResponse)
   }
 
   getUserInfo() {
@@ -21,9 +19,7 @@ export default class Api {
         authorization: this._authToken
       }
     })
-
-      .then(res => res.ok ? res.json() : Promise.reject(`Error: ${res.status}`))
-      .catch((err) => { console.log(err); })
+      .then(this._checkResponse)
   }
 
   addCard({name, link}) {
@@ -38,8 +34,8 @@ export default class Api {
         link
       })
     })
-        .then(res => res.ok ? res.json() : Promise.reject(`Error: ${res.status}`))
-      .catch((err) => { console.log(err); })
+      .then(this._checkResponse)
+
   }
 
   deleteCard(cardId) {
@@ -50,8 +46,7 @@ export default class Api {
         "Content-Type": "application/json"
       },
     })
-      .then(res => res.ok ? res.json() : Promise.reject(`Error: ${res.status}`))
-      .catch((err) => { console.log(err); })
+      .then(this._checkResponse)
   }
 
 
@@ -68,8 +63,7 @@ export default class Api {
         about
       })
     })
-      .then(res => res.ok ? res.json() : Promise.reject(`Error: ${res.status}`))
-      .catch((err) => { console.log(err); })
+      .then(this._checkResponse)
   }
 
   switchLike(cardId, method) {
@@ -80,8 +74,7 @@ export default class Api {
         "Content-Type": "application/json"
       },
     })
-      .then(res => res.ok ? res.json() : Promise.reject(`Error: ${res.status}`))
-      .catch((err) => { console.log(err); })
+      .then(this._checkResponse)
   }
 
 
@@ -96,14 +89,12 @@ export default class Api {
         avatar
         )
       })
-      .then (this._checkResponse())
+      .then(this._checkResponse)
     }
 
-
     _checkResponse(res) {
-      console.log(res)
-      res.ok ? res.json() : Promise.reject(`Error: ${res.status}`)
-
+      console.log("CheckRes", res);
+      return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`)
     }
 
   }

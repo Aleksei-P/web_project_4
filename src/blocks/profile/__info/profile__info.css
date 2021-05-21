@@ -1,6 +1,7 @@
 .profile__info {
   max-width: 428px;
-  margin: 0px 154px 0 30px;
+  min-width: 200px;
+  margin: 0px auto 0 30px;
   display: flex;
   padding: 0;
   flex-wrap: wrap;
@@ -9,9 +10,6 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-
-
-
 }
 
 @media screen and (max-width: 920px) {

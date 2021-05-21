@@ -36,7 +36,7 @@ function setLoadingButtonText(isLoading, modal, loadingText = "Saving...", defau
   }
 }
 
-  //Forms
+//Forms
 const editFormValidator = new FormValidator(defultConfig, editProfile);
 const addFormValidator = new FormValidator(defultConfig, addCardForm);
 const saveAvatarFormValidator = new FormValidator(defultConfig, saveAvatar);
@@ -54,30 +54,32 @@ Promise.all([api.getUserInfo(), api.getCardList()]).then(([res, cards]) => {
   userInfo.setUserInfo(res.name, res.about, res.avatar, res._id);
   console.log(cards);
 
-    loadElements = new Section({
-  items: cards,
+  loadElements = new Section({
+    items: cards,
   renderer: (data) => {
     const card = new Card(data, userInfo.getUserInfo().id, ".elements", () => popupImageWindow.open(data),
     /*(e) => api.deleteCard(data._id).then(() => {
-        e.target.closest('.element').remove()
+      e.target.closest('.element').remove()
+    })
+    */
+   (e) => { confirmDelete.open(data);
+    console.log("data del", data);
+    setLoadingButtonText(true, document.querySelector('.modal_delete'), 'Yes' );
+    confirmDelete.submitAction(() => {
+      api.deleteCard(data._id)
+      .then(() => {
+        e.target.closest('.element').remove();
+        confirmDelete.close();
       })
-      */
-     (e) => { confirmDelete.open(data);
-      console.log("data del", data);
-        confirmDelete.submitAction(() => {
-         api.deleteCard(data._id)
-         .then(() => {
-             e.target.closest('.element').remove();
-             confirmDelete.close();
-            })
-             .catch(err => console.log(err));
-    })},
+      .catch(err => console.log(err));
+    })
+        },
 
-      () => {
-        api.switchLike(data._id, card.getIsLiked())
-        .then( res => {
-          card.updateLikes(res)
-        })
+        () => {
+          api.switchLike(data._id, card.getIsLiked())
+          .then( res => {
+            card.updateLikes(res)
+          })
       }
       )
       const cardElement = card.generateCard();
@@ -95,7 +97,6 @@ const popupEditWindow = new PopupWithForm({
   popupSelector: '.modal_edit',
   submitHandler: (data) => {
     console.log("data edit", data);
-    setLoadingButtonText(true, editProfile);
     api.updateUserInfo({
       name: data.name,
       about: data.info,
@@ -111,17 +112,17 @@ const popupEditWindow = new PopupWithForm({
   }
 });
 
+
 const popupAddCardWindow = new PopupWithForm({
   popupSelector: '.modal_add',
   submitHandler: (data) => {
-    setLoadingButtonText(true, addCardForm);
     api.addCard(data)
     .then(data => {
       loadElements.createCard(data);
       popupAddCardWindow.close();
     })
       .finally(() => {
-        setLoadingButtonText(false, addCardForm);
+        setLoadingButtonText(true, addCardForm);
       })
       .catch(err => console.log(err))
   }
@@ -130,33 +131,37 @@ const popupAddCardWindow = new PopupWithForm({
 const popupEditProfilePicture = new PopupWithForm({
   popupSelector: '.modal_edit-profile',
   submitHandler: (data) => {
-    setLoadingButtonText(true, saveAvatar);
     api.updateUserPicture({
       avatar: data.avatar
     })
     .then((res) => {
       userInfo.setUserAvatar(res.avatar);
-       popupEditProfilePicture.close();
+      popupEditProfilePicture.close();
     })
     .finally(() => {
       setLoadingButtonText(false, saveAvatar);
-      })
+    })
       .catch(err => console.log(err))
-  }
+    }
 }
 )
 
 const confirmDelete = new PopupWithForm({
   popupSelector: '.modal_delete',
-    }
+}
 )
 
-  confirmDelete.setEventListeners();
-  popupImageWindow.setEventListeners();
-  popupEditWindow.setEventListeners();
+confirmDelete.setEventListeners();
+popupImageWindow.setEventListeners();
+popupEditWindow.setEventListeners();
   popupAddCardWindow.setEventListeners();
   popupEditProfilePicture.setEventListeners();
   // // Event Listener for buttons, close listeners in the class Popup.
+
+  setLoadingButtonText(false, editProfile);
+  setLoadingButtonText(false, saveAvatar);
+  setLoadingButtonText(false, addCardForm);
+
   editProfilePicture.addEventListener('click', () => popupEditProfilePicture.open());
   addButton.addEventListener('click', () => popupAddCardWindow.open());
   editButton.addEventListener('click', () => {
