@@ -64,8 +64,9 @@ Promise.all([api.getUserInfo(), api.getCardList()]).then(([res, cards]) => {
     */
    (e) => { confirmDelete.open(data);
     console.log("data del", data);
-    setLoadingButtonText(true, document.querySelector('.modal_delete'), 'Yes' );
+     setLoadingButtonText(false, document.querySelector('.modal_delete'), 'Deleting...', 'Yes' );
     confirmDelete.submitAction(() => {
+      setLoadingButtonText(true, document.querySelector('.modal_delete'), 'Deleting...', 'Yes');
       api.deleteCard(data._id)
       .then(() => {
         e.target.closest('.element').remove();
@@ -80,6 +81,7 @@ Promise.all([api.getUserInfo(), api.getCardList()]).then(([res, cards]) => {
           .then( res => {
             card.updateLikes(res)
           })
+          .catch(err => console.log(err));
       }
       )
       const cardElement = card.generateCard();
@@ -97,6 +99,7 @@ const popupEditWindow = new PopupWithForm({
   popupSelector: '.modal_edit',
   submitHandler: (data) => {
     console.log("data edit", data);
+    setLoadingButtonText(true, editProfile);
     api.updateUserInfo({
       name: data.name,
       about: data.info,
@@ -116,13 +119,14 @@ const popupEditWindow = new PopupWithForm({
 const popupAddCardWindow = new PopupWithForm({
   popupSelector: '.modal_add',
   submitHandler: (data) => {
+    setLoadingButtonText(true, addCardForm);
     api.addCard(data)
     .then(data => {
       loadElements.createCard(data);
       popupAddCardWindow.close();
     })
       .finally(() => {
-        setLoadingButtonText(true, addCardForm);
+        setLoadingButtonText(false, addCardForm);
       })
       .catch(err => console.log(err))
   }
@@ -131,6 +135,7 @@ const popupAddCardWindow = new PopupWithForm({
 const popupEditProfilePicture = new PopupWithForm({
   popupSelector: '.modal_edit-profile',
   submitHandler: (data) => {
+    setLoadingButtonText(true, saveAvatar);
     api.updateUserPicture({
       avatar: data.avatar
     })
@@ -154,13 +159,9 @@ const confirmDelete = new PopupWithForm({
 confirmDelete.setEventListeners();
 popupImageWindow.setEventListeners();
 popupEditWindow.setEventListeners();
-  popupAddCardWindow.setEventListeners();
-  popupEditProfilePicture.setEventListeners();
+popupAddCardWindow.setEventListeners();
+popupEditProfilePicture.setEventListeners();
   // // Event Listener for buttons, close listeners in the class Popup.
-
-  setLoadingButtonText(false, editProfile);
-  setLoadingButtonText(false, saveAvatar);
-  setLoadingButtonText(false, addCardForm);
 
   editProfilePicture.addEventListener('click', () => popupEditProfilePicture.open());
   addButton.addEventListener('click', () => popupAddCardWindow.open());
