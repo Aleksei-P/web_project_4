@@ -10,6 +10,7 @@ export const defultConfig = {
 export const modalEdit = document.querySelector('.modal_edit');
 export const modalAdd = document.querySelector('.modal_add');
 export const modalSaveAvatar = document.querySelector('.modal_edit-profile');
+export const modalConfirmDelete = document.querySelector('.modal_delete');
 
 export const addCardForm = modalAdd.querySelector('.form');
 export const editProfile = modalEdit.querySelector('.form');

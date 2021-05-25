@@ -10,7 +10,7 @@ import {
   defultConfig, modalEdit, modalAdd, addCardForm, editProfile, cardDeleteButton,
   modalImage, popupImage, popupImageTitle, addButton, editButton, closeButton,
   closeAddButton, closePopupImage, saveImage, formAdd, imageNewTitle, imageNewLink,
-  form, list, nameInput, infoInput, profileName, profileInfo, editProfilePicture, saveAvatar} from '../utils/constants.js';
+  form, list, nameInput, infoInput, profileName, profileInfo, editProfilePicture, saveAvatar, modalConfirmDelete} from '../utils/constants.js';
 import Api from '../components/Api.js';
 
   const api = new Api ({
@@ -64,9 +64,9 @@ Promise.all([api.getUserInfo(), api.getCardList()]).then(([res, cards]) => {
     */
    (e) => { confirmDelete.open(data);
     console.log("data del", data);
-     setLoadingButtonText(false, document.querySelector('.modal_delete'), 'Deleting...', 'Yes' );
+     setLoadingButtonText(false, modalConfirmDelete, 'Deleting...', 'Yes' );
     confirmDelete.submitAction(() => {
-      setLoadingButtonText(true, document.querySelector('.modal_delete'), 'Deleting...', 'Yes');
+      setLoadingButtonText(true, modalConfirmDelete, 'Deleting...', 'Yes');
       api.deleteCard(data._id)
       .then(() => {
         e.target.closest('.element').remove();
