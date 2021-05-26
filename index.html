@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Around U.S.</title>
+  <link rel="stylesheet" href="./pages/index.css">
+<script defer src="main.js"></script><link href="main.css" rel="stylesheet"></head>
+<body class="page">
+  <header class="header">
+    <img class="logo" src="c75819857ff1599f0c50.svg" alt="logo">
+  </header>
+  <main>
+    <section class="profile">
+      <!-- <div class="profile__avatar"> -->
+        <img class="profile__avatar-image profile__edit-picture" name="avatar" alt="image" src="c15cb08ab8ecfaba54c6.jpg">
+        <img class="profile__avatar-image-cursor" alt="image" src="ae1a976ddb506239e9f0.svg">
+      <!-- </div> -->
+      <div class="profile__info">
+        <h1 class="profile__title"></h1>
+        <button aria-label="edit" type="button" class="profile__edit-button"></button>
+        <p class="profile__subtitle"></p>
+        <!-- <button class="profile__edit-button"></button> -->
+      </div>
+      <button aria-label="add-button" type="button" class="profile__add-button"></button>
+    </section>
+
+    <template class="elements">
+      <article class="element">
+        <button aria-label="delete" class="element__delete"></button>
+        <img class="element__image" alt="image" style="">
+
+          <div class="element__info">
+            <h2 class="element__title"></h2>
+          <div class="element__likepack">
+            <button aria-label="like" class="element__button .element__button_like"></button>
+            <p class="element__button-like-count">0</p>
+          </div>
+          </div>
+      </article>
+    </template>
+  </main>
+  <footer class="footer">
+      <p class="footer__text"> © 2020 Around The U.S.</p>
+  </footer>
+    <div class="modal modal_edit">
+      <div class="modal__container">
+        <button aria-label="close-modal" type="button" class="modal__button"></button>
+        <form class="form" action="#">
+          <h2 class="form__header">Edit profile</h2>
+          <input id="inputName" class="form__input form__input_type_name" type="text" name="name" value="Jacques Cousteau" minlength="2" maxlength="40" required placeholder="Name">
+          <span id="inputName-error" class="form__error"></span>
+          <input id="inputInfo" class="form__input form__input_type_info" type="text" name="info" value="Explorer" minlength="2" maxlength="200" required placeholder="Line of work">
+          <span id="inputInfo-error" class="form__error"></span>
+          <button class="form__button" type="submit" >Save</button>
+        </form>
+      </div>
+    </div>
+
+      <div class="modal modal_add">
+        <div class="modal__container">
+          <button aria-label="close-modal" type="button" class="modal__button"></button>
+          <form class="form">
+            <h2 class="form__header">New place</h2>
+            <input id="inputNamePlace" class="form__input form__input_type_card-title" type="text" name="name" placeholder="title" value="" minlength="2" maxlength="30" required>
+            <span id="inputNamePlace-error" class="form__error"></span>
+            <input id="inputLinkPlace" class="form__input form__input_type_url" type="url" name="link" placeholder="link" value="" minlength="2" required>
+            <span id="inputLinkPlace-error" class="form__error"></span>
+            <button class="form__button form__button_disabled" type="submit" disabled>Save</button>
+          </form>
+        </div>
+    </div>
+
+    <div class="modal modal_edit-profile">
+      <div class="modal__container">
+        <button aria-label="close-modal" type="button" class="modal__button"></button>
+        <form class="form">
+          <h2 class="form__header">Change profile picture</h2>
+          <input id="inputPicture" class="form__input form__input_type_url" type="url" name="avatar" placeholder="link"
+            value="" minlength="2" required>
+          <span id="inputPicture-error" class="form__error"></span>
+          <button class="form__button form__button_disabled" type="submit" disabled>Save</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="modal modal_delete">
+    <div class="modal__container">
+      <button aria-label="close-modal" type="button" class="modal__button"></button>
+      <form class="form">
+        <h2 class="form__header">Are you sure?</h2>
+         <button class="form__button" type="submit"></button>
+      </form>
+    </div>
+  </div>
+
+    <div class="modal modal_image">
+      <div class="modal__container modal__container_backgroud">
+        <figure class="modal__figure">
+          <button aria-label="close-modal" type="button" class="modal__button"></button>
+          <img src=" " alt="popup Image" class="modal__popup-image">
+          <figcaption class="modal__popup-title"></figcaption>
+        </figure>
+      </div>
+    </div>
+    <script type="module" src="./pages/index.js"></script>
+</body>
+</html>
